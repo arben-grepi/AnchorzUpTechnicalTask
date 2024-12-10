@@ -29,6 +29,6 @@ app.use("/api/v1/urls", urlRoutes);
   const port = process.env.PORT || 5000;
 
   app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    log(`Server running on port ${port}`);
   });
 })();
