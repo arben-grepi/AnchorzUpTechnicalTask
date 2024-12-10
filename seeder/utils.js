@@ -45,9 +45,12 @@ export const startTimer = async (expirationTime) => {
     console.log("-----");
 
     if (
-      JSON.stringify(parsedCurrentTime) ===
-        JSON.stringify(parsedExpirationTime) &&
-      firstLapFinnished
+      parsedCurrentTime.day === parsedExpirationTime.day &&
+      parsedCurrentTime.month === parsedExpirationTime.month &&
+      parsedCurrentTime.year === parsedExpirationTime.year &&
+      parsedCurrentTime.hours === parsedExpirationTime.hours &&
+      parsedCurrentTime.minutes === parsedExpirationTime.minutes &&
+      firstLapFinished
     ) {
       console.log("YEEEEEEEES");
     }
