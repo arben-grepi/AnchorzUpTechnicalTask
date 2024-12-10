@@ -31,12 +31,12 @@ export const parseToDateAndTime = (dateTimeString) => {
   }
 };
 
-export const startTimer = (expirationTime) => {
+export const startTimer = async (expirationTime) => {
   //parsing the expiration time outside of intervall, because it  is static.
   const parsedExpirationTime = parseToDateAndTime(expirationTime);
 
   let firstLapFinnished = false;
-  setInterval(() => {
+  setInterval(async () => {
     //Defining new current time and parsing the current time inside the interval
     const parsedCurrentTime = parseToDateAndTime(new Date().toLocaleString());
     console.log(parsedCurrentTime);
