@@ -20,6 +20,9 @@ if (app.get("env") === "development") {
 app.use(express.json());
 app.use(helmet());
 
+const urlRoutes = require("./routes/urls");
+app.use("/api/v1/urls", urlRoutes);
+
 // Start Server and Database connection
 (async () => {
   await connectDB(); // Wait for the DB connection to succeed
