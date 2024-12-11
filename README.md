@@ -14,8 +14,7 @@ Ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/arben-grepi/AnchorzUpTechnicalTask.git
-   cd AnchorzUpTechnicalTask
+   git clone https://github.com/arben-grepi/AnchorzUpTechnicalTask.git && cd AnchorzUpTechnicalTask
    ```
 
 2. Install dependencies:
