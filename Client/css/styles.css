@@ -1,6 +1,6 @@
 :root {
   --color-primary: #92278f;
-  --color-links: #179be5;
-  --color-placeholder: #878686;
-  --color-heading: #000000;
+  --color-linkText: #179be5;
+  --color-placeholderText: #878686;
+  --color-body: #000000;
 }
