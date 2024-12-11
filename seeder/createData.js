@@ -1,9 +1,11 @@
-const mongoose = require("mongoose");
-require("dotenv").config(); // Load environment variables
-const Url = require("../models/Url"); // Path to your Url model
-const { nanoid } = require("nanoid");
-const colors = require("colors");
-const debug = require("debug");
+import "../config.js"; // Ensure dotenv is loaded before any other imports
+
+import mongoose from "mongoose";
+import Url from "../models/Url.js"; // Ensure you use the correct file extension for ES modules
+import { nanoid } from "nanoid";
+import colors from "colors";
+import debug from "debug";
+
 const log = debug("app:log");
 
 import { addMinutesToCurrentLocaleTime, startTimer } from "./utils.js";
