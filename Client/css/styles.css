@@ -69,17 +69,19 @@ h2,
 }
 
 .main-grid {
-  background-color: lightblue;
   height: 70vh;
 }
 
 .panel-grid {
-  background-color: lightcoral;
+  background-color: #e7e7e7;
   height: 30vh;
 }
 
-VStack {
-  margin-top: 5%;
+.VStack-panel {
+  margin-top: 5rem;
+}
+.VStack-main {
+  margin-top: 4rem;
 }
 
 @media screen and (min-width: 700px) {
@@ -94,13 +96,11 @@ VStack {
     height: 100vh; /* Full viewport height */
   }
   .main-grid {
-    background-color: lightblue;
     height: 100vh;
     width: 70vw;
   }
 
   .panel-grid {
-    background-color: lightcoral;
     height: 100vh;
     width: 30vw;
   }
