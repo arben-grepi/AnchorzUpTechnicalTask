@@ -35,13 +35,11 @@ export const startTimer = async (expirationTime) => {
   //parsing the expiration time outside of intervall, because it  is static.
   const parsedExpirationTime = parseToDateAndTime(expirationTime);
 
-  let firstLapFinnished = false;
   setInterval(async () => {
     //Defining new current time and parsing the current time inside the interval
     const parsedCurrentTime = parseToDateAndTime(new Date().toLocaleString());
     console.log(parsedCurrentTime);
     console.log(parsedExpirationTime);
-    console.log(firstLapFinnished);
     console.log("-----");
 
     if (
@@ -49,11 +47,9 @@ export const startTimer = async (expirationTime) => {
       parsedCurrentTime.month === parsedExpirationTime.month &&
       parsedCurrentTime.year === parsedExpirationTime.year &&
       parsedCurrentTime.hours === parsedExpirationTime.hours &&
-      parsedCurrentTime.minutes === parsedExpirationTime.minutes &&
-      firstLapFinished
+      parsedCurrentTime.minutes === parsedExpirationTime.minutes
     ) {
       console.log("YEEEEEEEES");
     }
-    firstLapFinnished = true;
   }, 10000); //every 10 seconds
 };
