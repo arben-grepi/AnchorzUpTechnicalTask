@@ -1,14 +1,16 @@
 // index.js
-require("dotenv").config(); // Only call this once at the entry point
+// config.js
 
-const connectDB = require("./db/MongoDBConnect");
-const express = require("express");
-const morgan = require("morgan"); // HTTP request logging middleware
-const helmet = require("helmet"); // Security middleware
+import "./config.js"; // Ensure dotenv is loaded before any other imports
 
-const debug = require("debug"); // Debugging utility
+import connectDB from "./db/MongoDBConnect.js";
+import express from "express";
+import morgan from "morgan";
+import helmet from "helmet";
+import debug from "debug";
+import urlRoutes from "./routes/urls.js";
+
 const log = debug("app:log");
-
 const app = express();
 
 if (app.get("env") === "development") {
@@ -16,16 +18,13 @@ if (app.get("env") === "development") {
   log("Morgan enabled...");
 }
 
-// Middleware
 app.use(express.json());
 app.use(helmet());
 
-const urlRoutes = require("./routes/urls");
 app.use("/api/v1/urls", urlRoutes);
 
-// Start Server and Database connection
 (async () => {
-  await connectDB(); // Wait for the DB connection to succeed
+  await connectDB();
   const port = process.env.PORT || 5000;
 
   app.listen(port, () => {

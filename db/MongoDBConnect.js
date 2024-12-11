@@ -1,7 +1,9 @@
-const mongoose = require("mongoose");
-require("dotenv").config(); // Load environment variables
-const debug = require("debug"); // Debugging utility
+import mongoose from "mongoose";
+import "../config.js"; // Ensure dotenv is loaded before any other imports
+
+import debug from "debug";
 const log = debug("app:log");
+
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI);
@@ -12,4 +14,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;
