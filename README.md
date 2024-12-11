@@ -22,3 +22,24 @@ Ensure you have the following installed:
    ```bash
    npm install
    ```
+
+3. ## Environment Setup
+
+1. Create a `.env` file in the root of the project. This file will store environment-specific variables for your application.
+
+2. Use the provided example below to set up your `.env` file:
+
+```plaintext
+NODE_ENV=development
+MONGO_URI=mongodb://localhost:27017/AnchorzUp
+PORT=5000
+DEBUG=app:log
+```
+
+3. To deactivate logging, you can remove the `DEBUG` variable or leave it empty as shown below:
+
+```plaintext
+DEBUG=
+```
+
+4. Save the `.env` file after making the changes..
