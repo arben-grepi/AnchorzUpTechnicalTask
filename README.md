@@ -46,4 +46,6 @@ DEBUG=app:log
 ## Run the App
 
 **Run the backend with**
-`node index.js`
+   ```bash
+   node index.js
+   ```
