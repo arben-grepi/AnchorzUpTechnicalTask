@@ -5,6 +5,7 @@
   --color-heading: #000000;
 }
 
+/*Typography*/
 html {
   /*62,5% of default 16px font size is 10px, so 1rem = 10px*/
   font-size: 62.5%;
@@ -57,9 +58,13 @@ h2 {
     font-size: 4rem;
   }
   .placeholder-text {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
   }
+  .dropdownList-text {
+    font-size: 2.2rem;
+  }
+
   .shortlink-text {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 }
