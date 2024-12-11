@@ -70,6 +70,7 @@ h2,
 .shortlink-text {
   color: var(--color-linkText);
   font-size: 1.4rem;
+  padding-bottom: 20px;
 }
 
 /* =======================================
@@ -89,12 +90,15 @@ h2,
   align-items: flex-start;
 }
 
-/* Main grid section */
+/* MAIN SECTION */
 .main-grid {
   height: 70vh;
 }
+.VStack-main {
+  margin-top: 4rem;
+}
 
-/* Panel grid section */
+/* PANEL SECTION */
 .panel-grid {
   background-color: #e7e7e7;
   height: 30vh;
@@ -103,9 +107,28 @@ h2,
 /* Vertical Stack margins */
 .VStack-panel {
   margin-top: 5rem;
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Aligns items vertically (default is row) */
+  justify-content: center; /* Centers items vertically */
+  align-items: center; /* Centers items horizontally */
 }
-.VStack-main {
-  margin-top: 4rem;
+
+/* List styling */
+.shortlink-list {
+  list-style-type: none; /* Remove the default bullet points */
+  padding-right: 2rem; /* Add some left padding */
+}
+
+.shortlink-list li {
+  margin-bottom: 1rem; /* Add some space between list items */
+}
+
+.shortlink-list a {
+  text-decoration: underline; /* Remove underline */
+}
+
+.shortlink-list a:hover {
+  font-weight: bold;
 }
 
 /* =======================================
