@@ -9,6 +9,7 @@
 html {
   /*62,5% of default 16px font size is 10px, so 1rem = 10px*/
   font-size: 62.5%;
+  height: 100vh;
 }
 
 body {
@@ -56,31 +57,53 @@ h2,
   font-size: 1.4rem;
 }
 
-/*Grids*/
-/* Grid container styles */
+/*Layout*/
 .grid-container {
-  display: grid;
-  grid-template-rows: 2fr 1fr; /* Top row 2/3, bottom row 1/3 */
-  height: 100vh; /* Full viewport height */
+  width: 100%;
+  height: 100%;
 }
-
-/* Row styles */
 .grid {
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
 }
 
 .main-grid {
   background-color: lightblue;
+  height: 70vh;
 }
 
 .panel-grid {
   background-color: lightcoral;
+  height: 30vh;
+}
+
+VStack {
+  margin-top: 5%;
 }
 
 @media screen and (min-width: 700px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Two columns, each taking 50% of the width */
+    grid-template-rows: 100vh; /* Single row with 100vh height */
+    width: 100%; /* Ensure full width */
+    height: 100vh; /* Full viewport height */
+  }
+  .main-grid {
+    background-color: lightblue;
+    height: 100vh;
+    width: 70vw;
+  }
+
+  .panel-grid {
+    background-color: lightcoral;
+    height: 100vh;
+    width: 30vw;
+  }
 }
 
 @media screen and (min-width: 1024px) {
