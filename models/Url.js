@@ -13,12 +13,16 @@ const urlSchema = new mongoose.Schema({
     unique: true,
   },
   expiration: {
-    type: String, // Store as a string
+    type: String, // Create validation
     default: null,
   },
   clickCount: {
     type: Number,
     default: 0,
+  },
+  qrCode: {
+    type: String, // Base64-encoded QR code
+    default: null,
   },
 });
 

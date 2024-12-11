@@ -5,6 +5,7 @@ import Url from "../models/Url.js"; // Ensure you use the correct file extension
 import { nanoid } from "nanoid";
 import colors from "colors";
 import debug from "debug";
+import QRCode from "qrcode"; // Import QRCode library
 
 const log = debug("app:log");
 
@@ -19,6 +20,16 @@ const connectDB = async () => {
     console.error(`Error: ${err.message}`.red.bold);
     process.exit(1);
   }
+};
+
+// Function to generate QR codes for dummy URLs
+const generateQrCodes = async (urls) => {
+  const urlsWithQrCodes = [];
+  for (const url of urls) {
+    const qrCode = await QRCode.toDataURL(url.originalUrl); // Generate the QR code for the original URL
+    urlsWithQrCodes.push({ ...url, qrCode }); // Add the QR code to the URL object
+  }
+  return urlsWithQrCodes;
 };
 
 // Dummy URLs with expiration times
@@ -41,24 +52,6 @@ const dummyUrls = [
     expiration: addMinutesToCurrentLocaleTime(3),
     clickCount: 7,
   },
-  {
-    originalUrl: "https://npmjs.com",
-    shortId: nanoid(5),
-    expiration: addMinutesToCurrentLocaleTime(4),
-    clickCount: 3,
-  },
-  {
-    originalUrl: "https://mozilla.org",
-    shortId: nanoid(5),
-    expiration: addMinutesToCurrentLocaleTime(5),
-    clickCount: 15,
-  },
-  {
-    originalUrl: "https://wikipedia.org",
-    shortId: nanoid(5),
-    expiration: addMinutesToCurrentLocaleTime(6),
-    clickCount: 9,
-  },
 ];
 
 // Seed data to MongoDB
@@ -66,7 +59,10 @@ const seedData = async () => {
   try {
     await Url.deleteMany({});
     console.log("Existing data cleared...".yellow);
-    await Url.insertMany(dummyUrls);
+
+    const urlsWithQrCodes = await generateQrCodes(dummyUrls); // Generate QR codes for dummy URLs
+    await Url.insertMany(urlsWithQrCodes); // Insert the URLs with QR codes into the database
+
     console.log("Dummy data inserted...".green.bold);
     process.exit(); // Exit after seeding
   } catch (err) {

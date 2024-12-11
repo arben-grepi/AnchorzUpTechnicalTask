@@ -1,6 +1,7 @@
 import express from "express";
 import Url from "../models/Url.js"; // Import the Url model
 import { nanoid } from "nanoid"; // For generating short IDs
+import QRCode from "qrcode"; // Import QRCode library
 
 const router = express.Router();
 
@@ -26,7 +27,6 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const { originalUrl, expiration } = req.body;
 
-  // Validate input
   if (!originalUrl) {
     return res.status(400).json({
       success: false,
@@ -45,11 +45,18 @@ router.post("/", async (req, res) => {
       });
     }
 
+    const shortId = nanoid(5); // Generate a short ID
+    const shortUrl = `${req.protocol}://${req.get("host")}/${shortId}`; // Create the full short URL
+
+    // Generate QR code
+    const qrCode = await QRCode.toDataURL(shortUrl);
+
     // Create a new URL document
     url = await Url.create({
       originalUrl,
-      shortId: nanoid(5), // Generate a unique short ID
-      expiration: expiration || null, // Use provided expiration or set it to null
+      shortId,
+      expiration: expiration || null,
+      qrCode, // Save the generated QR code
     });
 
     res.status(201).json({
