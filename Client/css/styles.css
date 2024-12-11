@@ -15,25 +15,31 @@ body {
   font-family: "Lato", sans-serif;
   color: var(--color-body);
   line-height: 1.5;
-  margin: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 h1,
 h2 {
   color: var(--color-heading);
   font-weight: 700; /* Bold */
-  margin: 0;
+  margin-top: 0;
 }
 
 h1 {
   font-size: 4rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 h2 {
   font-size: 3rem;
-  margin-bottom: 2rem;
+}
+
+h2,
+.placeholder-text,
+.dropdownList-text,
+.shortlink-text {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .placeholder-text {
