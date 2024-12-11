@@ -42,6 +42,14 @@ DEBUG=app:log
 ```
 **Save the `.env` file after making the changes..**
 
+## (Optional) Crete dummy data.
+
+**Create data in your database**
+
+   ```bash
+   node seeder/createData.js 
+   ```
+
 
 ## Run the App
 
