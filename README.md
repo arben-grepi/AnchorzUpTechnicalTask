@@ -25,9 +25,15 @@ Ensure you have the following installed:
 
 3. ## Environment Setup
 
-1. Create a `.env` file in the root of the project. This file will store environment-specific variables for your application.
+**Create a `.env` file in the root of the project. This file will store the following environment-specific variables:**
 
-2. Use the provided example below to set up your `.env` file:
+   - `NODE_ENV`: Set the environment type (e.g., `development` or `production`).
+   - `MONGO_URI`: The connection string for your MongoDB database.
+   - `PORT`: The port number for your application to run on.
+   - `DEBUG`: (Optional) Enable specific debug logging (e.g., `app:log`).
+
+
+**You may use the provided example below to set up your `.env` file:**
 
 ```plaintext
 NODE_ENV=development
@@ -35,11 +41,10 @@ MONGO_URI=mongodb://localhost:27017/AnchorzUp
 PORT=5000
 DEBUG=app:log
 ```
+**Save the `.env` file after making the changes..**
 
-3. To deactivate logging, you can remove the `DEBUG` variable or leave it empty as shown below:
 
-```plaintext
-DEBUG=
-```
+## Run the App
 
-4. Save the `.env` file after making the changes..
+**Run the backend with**
+`node index.js`
