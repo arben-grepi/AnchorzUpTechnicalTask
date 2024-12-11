@@ -131,6 +131,10 @@ h2,
   font-weight: bold;
 }
 
+.fa-trash {
+  cursor: pointer; /* Change cursor to a pointer when hovering over the icon */
+}
+
 /* =======================================
      Media Queries
      ======================================= */
