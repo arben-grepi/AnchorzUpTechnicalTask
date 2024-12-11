@@ -1,91 +1,66 @@
 import express from "express";
-import Url from "../models/Url.js";
-import { nanoid } from "nanoid";
+import Url from "../models/Url.js"; // Import the Url model
+import { nanoid } from "nanoid"; // For generating short IDs
 
 const router = express.Router();
 
-// Shorten a URL
+// GET method to retrieve all URLs
+router.get("/", async (req, res) => {
+  try {
+    const urls = await Url.find(); // Fetch all URLs from the database
+    res.status(200).json({
+      success: true,
+      count: urls.length,
+      data: urls,
+    });
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+});
+
+// POST method to create a new URL
 router.post("/", async (req, res) => {
   const { originalUrl, expiration } = req.body;
 
+  // Validate input
+  if (!originalUrl) {
+    return res.status(400).json({
+      success: false,
+      message: "Original URL is required",
+    });
+  }
+
   try {
-    const existingUrl = await Url.findOne({ originalUrl });
-    if (existingUrl) {
+    // Check if the URL already exists
+    let url = await Url.findOne({ originalUrl });
+    if (url) {
       return res.status(400).json({
         success: false,
-        message: "URL already shortened",
+        message: "URL already exists",
+        data: url,
       });
     }
 
-    const shortId = nanoid(6); // Generate unique ID
-    const newUrl = new Url({ originalUrl, shortId, expiration });
+    // Create a new URL document
+    url = await Url.create({
+      originalUrl,
+      shortId: nanoid(5), // Generate a unique short ID
+      expiration: expiration || null, // Use provided expiration or set it to null
+    });
 
-    await newUrl.save();
     res.status(201).json({
       success: true,
-      data: { shortUrl: `http://localhost:5000/api/v1/urls/${shortId}` },
+      data: url,
     });
   } catch (err) {
-    if (err.code === 11000) {
-      // Duplicate key error
-      res.status(400).json({ success: false, message: "URL already exists" });
-    } else {
-      res.status(500).json({ success: false, message: "Server error" });
-    }
-  }
-});
-
-// Redirect to the original URL
-router.get("/:shortId", async (req, res) => {
-  const { shortId } = req.params;
-
-  try {
-    const url = await Url.findOne({ shortId });
-
-    if (!url) {
-      return res.status(404).json({ success: false, message: "URL not found" });
-    }
-
-    if (url.expiration && new Date() > url.expiration) {
-      await Url.deleteOne({ shortId }); // Delete expired URL
-      return res.status(410).json({ success: false, message: "URL expired" });
-    }
-
-    url.clickCount++;
-    await url.save();
-
-    res.redirect(url.originalUrl);
-  } catch (err) {
-    res.status(500).json({ success: false, message: "Server error" });
-  }
-});
-
-// Get stats of a URL
-router.get("/:shortId/stats", async (req, res) => {
-  const { shortId } = req.params;
-
-  try {
-    const url = await Url.findOne({ shortId });
-
-    if (!url) {
-      return res.status(404).json({
-        success: false,
-        message: "URL not found",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      data: {
-        originalUrl: url.originalUrl,
-        clickCount: url.clickCount,
-      },
-    });
-  } catch (err) {
-    console.error(err);
+    console.error(`Error: ${err.message}`);
     res.status(500).json({
       success: false,
-      error: "Server error",
+      message: "Server Error",
     });
   }
 });
