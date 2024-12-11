@@ -1,6 +1,65 @@
 :root {
   --color-primary: #92278f;
   --color-linkText: #179be5;
-  --color-placeholderText: #878686;
-  --color-body: #000000;
+  --color-lightGrayText: #878686;
+  --color-heading: #000000;
+}
+
+html {
+  /*62,5% of default 16px font size is 10px, so 1rem = 10px*/
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: var(--color-body);
+  line-height: 1.5;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+h1,
+h2 {
+  color: var(--color-heading);
+  font-weight: 700; /* Bold */
+  margin: 0;
+}
+
+h1 {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.placeholder-text {
+  color: var(--color-lightGrayText);
+  font-size: 1.8rem;
+}
+.dropdownList-text {
+  font-weight: 200;
+  font-size: 1.8rem;
+}
+
+.shortlink-text {
+  color: var(--color-linkText);
+  font-size: 1.4rem;
+}
+
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: 6rem;
+  }
+  h2 {
+    font-size: 4rem;
+  }
+  .placeholder-text {
+    font-size: 2.8rem;
+  }
+  .shortlink-text {
+    font-size: 1.6rem;
+  }
 }
