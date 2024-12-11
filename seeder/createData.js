@@ -52,6 +52,48 @@ const dummyUrls = [
     expiration: addMinutesToCurrentLocaleTime(3),
     clickCount: 7,
   },
+  {
+    originalUrl: "https://microsoft.com",
+    shortId: nanoid(5),
+    expiration: addMinutesToCurrentLocaleTime(4),
+    clickCount: 12,
+  },
+  {
+    originalUrl: "https://twitter.com",
+    shortId: nanoid(5),
+    expiration: addMinutesToCurrentLocaleTime(5),
+    clickCount: 8,
+  },
+  {
+    originalUrl: "https://facebook.com",
+    shortId: nanoid(5),
+    expiration: addMinutesToCurrentLocaleTime(6),
+    clickCount: 15,
+  },
+  {
+    originalUrl: "https://linkedin.com",
+    shortId: nanoid(5),
+    expiration: addMinutesToCurrentLocaleTime(7),
+    clickCount: 3,
+  },
+  {
+    originalUrl: "https://youtube.com",
+    shortId: nanoid(5),
+    expiration: addMinutesToCurrentLocaleTime(8),
+    clickCount: 20,
+  },
+  {
+    originalUrl: "https://reddit.com",
+    shortId: nanoid(5),
+    expiration: addMinutesToCurrentLocaleTime(9),
+    clickCount: 11,
+  },
+  {
+    originalUrl: "https://amazon.com",
+    shortId: nanoid(5),
+    expiration: addMinutesToCurrentLocaleTime(10),
+    clickCount: 6,
+  },
 ];
 
 // Seed data to MongoDB
