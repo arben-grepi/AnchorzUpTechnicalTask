@@ -97,10 +97,21 @@ h2,
   overflow-y: auto;
   overflow-x: hidden;
 }
-
+.MainGrid-Stack {
+  padding-left: 30%;
+}
 .MainGrid-Flex {
   flex-direction: column;
   gap: 2rem;
+}
+
+.MainHeading {
+  display: flex; /* Flexbox layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  width: 100%; /* Full width */
+
+  text-align: center; /* Center text inside the heading */
 }
 
 /* PANEL SECTION */
@@ -134,8 +145,14 @@ h2,
     width: 70vw; /* Occupies 70% of the viewport width */
     padding-top: 8rem;
   }
+  .MainGrid-Stack {
+    padding-left: 20%;
+  }
   .MainGrid-Flex {
     flex-direction: row;
+  }
+  .MainHeading {
+    padding-right: 25%;
   }
 
   .panel-grid {
