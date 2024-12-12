@@ -75,7 +75,7 @@ const Main = () => {
   return (
     <>
       <Stack width={"100%"}>
-        <h1 className="MainHeading">Main</h1>
+        <h1 className="MainHeading">URL Shortener</h1>
         {loading && <p className="primary-text">Loading...</p>}
         {showMessage && successMessage && (
           <p style={{ color: "green" }}>{successMessage}</p>

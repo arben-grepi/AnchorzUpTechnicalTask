@@ -1,10 +1,12 @@
-import { Input } from "@chakra-ui/react";
-import{ forwardRef } from "react";
+/* eslint-disable react/prop-types */
 
-// eslint-disable-next-line react/prop-types
+import { Input } from "@chakra-ui/react";
+import { forwardRef } from "react";
+
+// eslint-disable-next-line react/display-name
 const InputUrl = forwardRef((props, ref) => {
   const { placeholder, value, onChange, onKeyDown } = props;
-  
+
   const handleChange = (e) => {
     let newValue = e.target.value;
 
@@ -33,7 +35,5 @@ const InputUrl = forwardRef((props, ref) => {
     />
   );
 });
-
-export default InputUrl;
 
 export default InputUrl;

@@ -32,7 +32,7 @@ const Panel = () => {
         justify="center" // Centers items vertically
       >
         <Logo />
-        <h2>Panel</h2>
+        <h2>My shortened URLs</h2>
         <LinkList items={urls} onDelete={handleDelete} />
       </Stack>
     </div>
