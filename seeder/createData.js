@@ -9,7 +9,7 @@ import QRCode from "qrcode"; // Import QRCode library
 
 const log = debug("app:log");
 
-import { addMinutesToCurrentLocaleTime, startTimer } from "./utils.js";
+import { addMinutesToCurrentLocaleTime, startTimer } from "../utils.js";
 
 // Connect to MongoDB
 const connectDB = async () => {
