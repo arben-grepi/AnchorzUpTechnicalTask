@@ -98,6 +98,11 @@ h2,
   overflow-x: hidden;
 }
 
+.MainGrid-Flex {
+  flex-direction: column;
+  gap: 2rem;
+}
+
 /* PANEL SECTION */
 .panel-grid {
   background-color: #e7e7e7;
@@ -124,6 +129,9 @@ h2,
     height: 100vh;
     width: 70vw; /* Occupies 70% of the viewport width */
     padding-top: 8rem;
+  }
+  .MainGrid-Flex {
+    flex-direction: row;
   }
 
   .panel-grid {
