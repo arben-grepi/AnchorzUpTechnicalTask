@@ -26,10 +26,7 @@ Ensure you have the following installed:
 
 **Create a `.env` file in the root of the project. This file will store the following environment-specific variables:**
 
-   - `NODE_ENV`: Set the environment type (e.g., `development` or `production`).
-   - `MONGO_URI`: The connection string for your MongoDB database.
-   - `PORT`: The port number for your application to run on.
-   - `DEBUG`: (Optional) Enable specific debug logging (e.g., `app:log`).
+   - `DEBUG`: (Optional) Enables debug logging in the backend. 
 
 
 **You may use the provided example below to set up your `.env` file:**
@@ -42,18 +39,20 @@ DEBUG=app:log
 ```
 **Save the `.env` file after making the changes..**
 
-## (Optional) Crete dummy data.
-
-**Create data in your database**
-
-   ```bash
-   node seeder/createData.js 
-   ```
-
 
 ## Run the App
 
-**Run the backend with**
+**Run the backend and frontend concurrently with:**
+```bash
+npm start
+````
+
+**You can also run them separately for a better logging experience**
+In one terminal:
    ```bash
    node index.js
+   ```
+In another terminal:
+   ```bash
+   cd react-client/ && npm run dev
    ```
