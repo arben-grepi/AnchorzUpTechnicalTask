@@ -7,10 +7,10 @@ const LinkList = ({ items, onDelete }) => {
   };
 
   return (
-    <Flex direction="column" gap="1.5rem" width={"100%"}>
+    <Flex direction="column" gap="1rem" width={"100%"}>
       {items.map((item) => (
         <Flex key={item.shortId} justify="space-between" align="center">
-          <Box>
+          <Box paddingLeft={"30px"}>
             <a
               className="shortlink-text"
               href={item.originalUrl}
@@ -25,7 +25,7 @@ const LinkList = ({ items, onDelete }) => {
               role="img"
               aria-label="Delete"
               onClick={() => handleDelete(item.shortId)} // Pass shortId to handleDelete
-              style={{ cursor: "pointer", paddingLeft: "1.5rem" }} // Add cursor pointer for better UX
+              style={{ cursor: "pointer", paddingRight: "30px" }} // Add cursor pointer for better UX
             >
               🗑️
             </span>

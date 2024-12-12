@@ -4,9 +4,10 @@
 
 :root {
   --color-primary: #92278f;
-  --color-linkText: #179be5;
-  --color-lightGrayText: #878686;
   --color-heading: #000000;
+  --color-linkText: #179be5;
+  --color-primary-success: #008000;
+  --color-primary-error: #ff0000;
 }
 
 /* =======================================
@@ -56,24 +57,22 @@ h2,
   margin-bottom: 1rem;
 }
 
-/* Placeholder text styles */
-.primary-text {
-  color: var(--color-lightGrayText);
-  font-size: 1.5rem;
-}
-
-/* Dropdown text styles */
-.dropdownList-text {
-  font-weight: 200;
-  font-size: 1.8rem;
-}
-
 /* Shortlink text styles */
 .shortlink-text {
   color: var(--color-linkText);
   font-size: 1.4rem;
   padding-bottom: 20px;
 }
+
+/*Success and error messages*/
+
+.primary-success-text {
+  color: var(--color-primary-success);
+}
+.primary-error-text {
+  color: var(--color-primary-error);
+}
+
 .primary-button {
   background-color: var(--color-primary);
   color: #fff;
