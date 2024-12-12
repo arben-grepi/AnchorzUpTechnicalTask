@@ -6,7 +6,7 @@ export const addMinutesToCurrentLocaleTime = (minutes) => {
   return currentDate.toLocaleString();
 };
 
-export const parseToDateAndTime = (dateTimeString) => {
+export const parseToDateAndTimeNode = (dateTimeString) => {
   try {
     // Split the string into date and time parts using the space as a separator
     const [datePart, timePart] = dateTimeString.split(" ");
@@ -30,26 +30,64 @@ export const parseToDateAndTime = (dateTimeString) => {
     throw error; // Re-throw the error for further handling if necessary
   }
 };
+function parseDateTimeReact(dateString) {
+  // Create a new Date object using the date string
+  const date = new Date(dateString);
 
-export const startTimer = async (expirationTime) => {
-  //parsing the expiration time outside of intervall, because it  is static.
-  const parsedExpirationTime = parseToDateAndTime(expirationTime);
+  // Check if the date is valid
+  if (isNaN(date)) {
+    throw new Error("Invalid date format");
+  }
 
-  setInterval(async () => {
-    //Defining new current time and parsing the current time inside the interval
-    const parsedCurrentTime = parseToDateAndTime(new Date().toLocaleString());
-    console.log(parsedCurrentTime);
-    console.log(parsedExpirationTime);
-    console.log("-----");
+  // Return the parsed values as an object
+  return {
+    day: date.getDate(),
+    month: date.getMonth() + 1, // getMonth() returns 0 for January, so add 1
+    year: date.getFullYear(),
+    hours: date.getHours(),
+    minutes: date.getMinutes(),
+  };
+}
 
-    if (
-      parsedCurrentTime.day === parsedExpirationTime.day &&
+export const startTimer = (expirationTime, shortId) => {
+  // Parse the expiration time
+  const parsedExpirationTime = parseToDateAndTimeNode(expirationTime);
+
+  // Get the current time and parse it
+  const parsedCurrentTime = parseDateTimeReact(new Date().toLocaleString());
+
+  console.log("-----");
+  console.log(shortId);
+  console.log("Current time:", parsedCurrentTime);
+  console.log("Expiration time:", parsedExpirationTime);
+  console.log("-----");
+
+  // Compare parsed times to determine if the current time has reached or passed expiration
+  if (
+    parsedCurrentTime.year > parsedExpirationTime.year ||
+    (parsedCurrentTime.year === parsedExpirationTime.year &&
+      parsedCurrentTime.month > parsedExpirationTime.month) ||
+    (parsedCurrentTime.year === parsedExpirationTime.year &&
       parsedCurrentTime.month === parsedExpirationTime.month &&
-      parsedCurrentTime.year === parsedExpirationTime.year &&
+      parsedCurrentTime.day > parsedExpirationTime.day) ||
+    (parsedCurrentTime.year === parsedExpirationTime.year &&
+      parsedCurrentTime.month === parsedExpirationTime.month &&
+      parsedCurrentTime.day === parsedExpirationTime.day &&
+      parsedCurrentTime.hours > parsedExpirationTime.hours) ||
+    (parsedCurrentTime.year === parsedExpirationTime.year &&
+      parsedCurrentTime.month === parsedExpirationTime.month &&
+      parsedCurrentTime.day === parsedExpirationTime.day &&
       parsedCurrentTime.hours === parsedExpirationTime.hours &&
-      parsedCurrentTime.minutes === parsedExpirationTime.minutes
-    ) {
-      console.log("YEEEEEEEES");
-    }
-  }, 10000); //every 10 seconds
+      parsedCurrentTime.minutes >= parsedExpirationTime.minutes)
+  ) {
+    console.log("Expiration time reached");
+    console.log(shortId);
+    console.log("Current time:", parsedCurrentTime);
+    console.log("Expiration time:", parsedExpirationTime);
+
+    return true; // Expired
+  }
+
+  console.log("Not yet expired");
+  return false; // Not expired
 };
