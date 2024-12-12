@@ -1,7 +1,7 @@
 import "./index.css";
 import { GlobalProvider } from "./context/GlobalState";
 import Panel from "./components/PanelGrid";
-import { Main } from "./components/MainGrid";
+import Main from "./components/MainGrid";
 
 function App() {
   return (
