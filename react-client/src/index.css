@@ -1,0 +1,174 @@
+/* =======================================
+   Root Variables
+   ======================================= */
+
+/* =======================================
+       Typography Styles
+       ======================================= */
+
+/* Base font settings for scaling and rem sizing */
+html {
+  font-size: 62.5%; /* 62.5% of 16px = 10px (1rem = 10px) */
+  height: 100vh;
+}
+
+/* General body styles */
+body {
+  font-family: "Lato", sans-serif;
+  color: var(--color-body);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+/* Headings */
+h1,
+h2 {
+  color: var(--color-heading);
+  font-weight: 700; /* Bold */
+  margin-top: 0;
+}
+
+/* H1 specific styles */
+h1 {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+/* H2 specific styles */
+h2 {
+  font-size: 3rem;
+}
+
+/* Text groups with consistent margins */
+h2,
+.placeholder-text,
+.dropdownList-text,
+.shortlink-text {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Placeholder text styles */
+.placeholder-text {
+  color: var(--color-lightGrayText);
+  font-size: 1.8rem;
+}
+
+/* Dropdown text styles */
+.dropdownList-text {
+  font-weight: 200;
+  font-size: 1.8rem;
+}
+
+/* Shortlink text styles */
+.shortlink-text {
+  color: var(--color-linkText);
+  font-size: 1.4rem;
+  padding-bottom: 20px;
+}
+
+/* =======================================
+       Layout Styles
+       ======================================= */
+
+/* Grid container (responsible for page structure) */
+.grid-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Flex-based grid styling for alignment */
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* MAIN SECTION */
+.main-grid {
+  height: 70vh;
+}
+.VStack-main {
+  margin-top: 4rem;
+}
+
+/* PANEL SECTION */
+.panel-grid {
+  background-color: #e7e7e7;
+  height: 30vh;
+}
+
+/* Vertical Stack margins */
+.VStack-panel {
+  margin-top: 5rem;
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Aligns items vertically (default is row) */
+  justify-content: center; /* Centers items vertically */
+  align-items: center; /* Centers items horizontally */
+}
+
+/* List styling */
+.shortlink-list {
+  list-style-type: none; /* Remove the default bullet points */
+  padding-right: 2rem; /* Add some left padding */
+}
+
+.shortlink-list li {
+  margin-bottom: 1rem; /* Add some space between list items */
+}
+
+.shortlink-list a {
+  text-decoration: underline; /* Remove underline */
+}
+
+.shortlink-list a:hover {
+  font-weight: bold;
+}
+
+.fa-trash {
+  cursor: pointer; /* Change cursor to a pointer when hovering over the icon */
+}
+
+/* =======================================
+       Media Queries
+       ======================================= */
+
+/* Layout for screens >= 700px */
+@media screen and (min-width: 700px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    grid-template-rows: 100vh; /* Single row filling viewport height */
+    width: 100%;
+    height: 100vh;
+  }
+
+  .main-grid {
+    height: 100vh;
+    width: 70vw; /* Occupies 70% of the viewport width */
+  }
+
+  .panel-grid {
+    height: 100vh;
+    width: 30vw; /* Occupies 30% of the viewport width */
+  }
+}
+
+/* Typography adjustments for screens >= 1024px */
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: 6rem;
+  }
+  h2 {
+    font-size: 4rem;
+  }
+  .placeholder-text {
+    font-size: 2.4rem;
+  }
+  .dropdownList-text {
+    font-size: 2.2rem;
+  }
+  .shortlink-text {
+    font-size: 1.8rem;
+  }
+}
