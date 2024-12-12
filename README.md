@@ -17,9 +17,9 @@ Ensure you have the following installed:
    git clone https://github.com/arben-grepi/AnchorzUpTechnicalTask.git && cd AnchorzUpTechnicalTask
    ```
 
-2. Install dependencies:
+2. Install dependencies for both:
    ```bash
-   npm install
+   npm i && cd react-client/ && npm i && cd ..
    ```
 
 3. ## Environment Setup
