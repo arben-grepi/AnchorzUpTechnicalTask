@@ -9,17 +9,9 @@ function App() {
       <GlobalProvider>
         <div className="grid-container">
           <div className="grid panel-grid">
-            <VStack className="VStack-panel">
-              <Panel />
-            </VStack>
+            <Panel id="panel" />
           </div>
-          <div className="grid main-grid">
-            <VStack className="VStack-main">
-              <h1>Header</h1>
-              <h2>Main</h2>
-              <h2>Main</h2>
-            </VStack>
-          </div>
+          <div className="grid main-grid"></div>
         </div>
       </GlobalProvider>
     </>

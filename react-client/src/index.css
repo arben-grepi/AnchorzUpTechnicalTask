@@ -88,15 +88,13 @@ h2,
 .grid {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
 }
 
 /* MAIN SECTION */
 .main-grid {
   height: 70vh;
-}
-.VStack-main {
-  margin-top: 4rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* PANEL SECTION */
@@ -105,16 +103,6 @@ h2,
   height: 30vh;
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-/* Vertical Stack margins */
-.VStack-panel {
-  margin-top: 2rem;
-  display: flex; /* Enables flexbox layout */
-  flex-direction: column; /* Aligns items vertically (default is row) */
-  justify-content: center; /* Centers items vertically */
-  align-items: center; /* Centers items horizontally */
-  width: 100%;
 }
 
 /* =======================================
