@@ -25,7 +25,7 @@ const LinkList = ({ items, onDelete }) => {
               role="img"
               aria-label="Delete"
               onClick={() => handleDelete(item.shortId)} // Pass shortId to handleDelete
-              style={{ cursor: "pointer" }} // Add cursor pointer for better UX
+              style={{ cursor: "pointer", paddingLeft: "1.5rem" }} // Add cursor pointer for better UX
             >
               🗑️
             </span>
