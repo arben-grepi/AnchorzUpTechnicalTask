@@ -8,7 +8,7 @@ function App() {
       <GlobalProvider>
         <div className="grid-container">
           <div className="grid panel-grid">
-            <Panel id="panel" />
+            <Panel />
           </div>
           <div className="grid main-grid"></div>
         </div>
