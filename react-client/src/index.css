@@ -110,6 +110,10 @@ h2,
   overflow-y: auto;
   overflow-x: hidden;
 }
+#AnchorzUpLogo {
+  width: 60%;
+  margin-top: 1rem;
+}
 
 /* =======================================
        Media Queries
@@ -137,7 +141,10 @@ h2,
   .panel-grid {
     height: 100vh;
     width: 30vw; /* Occupies 30% of the viewport width */
-    padding-top: 10rem;
+  }
+  #AnchorzUpLogo {
+    width: 75%;
+    margin-bottom: 6rem;
   }
 }
 
