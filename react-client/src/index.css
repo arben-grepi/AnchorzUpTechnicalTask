@@ -2,6 +2,13 @@
    Root Variables
    ======================================= */
 
+:root {
+  --color-primary: #92278f;
+  --color-linkText: #179be5;
+  --color-lightGrayText: #878686;
+  --color-heading: #000000;
+}
+
 /* =======================================
        Typography Styles
        ======================================= */
@@ -96,37 +103,18 @@ h2,
 .panel-grid {
   background-color: #e7e7e7;
   height: 30vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Vertical Stack margins */
 .VStack-panel {
-  margin-top: 5rem;
+  margin-top: 2rem;
   display: flex; /* Enables flexbox layout */
   flex-direction: column; /* Aligns items vertically (default is row) */
   justify-content: center; /* Centers items vertically */
   align-items: center; /* Centers items horizontally */
-}
-
-/* List styling */
-.shortlink-list {
-  list-style-type: none; /* Remove the default bullet points */
-  padding-right: 2rem; /* Add some left padding */
-}
-
-.shortlink-list li {
-  margin-bottom: 1rem; /* Add some space between list items */
-}
-
-.shortlink-list a {
-  text-decoration: underline; /* Remove underline */
-}
-
-.shortlink-list a:hover {
-  font-weight: bold;
-}
-
-.fa-trash {
-  cursor: pointer; /* Change cursor to a pointer when hovering over the icon */
+  width: 100%;
 }
 
 /* =======================================

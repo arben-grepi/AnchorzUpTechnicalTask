@@ -5,14 +5,7 @@ import App from "./App";
 import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
 
 const system = createSystem(defaultConfig, {
-  theme: {
-    colors: {
-      primary: "#92278f",
-      linkText: "#179be5",
-      lightGrayText: "#878686",
-      heading: "#000000",
-    },
-  },
+  theme: {},
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
