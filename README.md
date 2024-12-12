@@ -17,17 +17,14 @@ Ensure you have the following installed:
    git clone https://github.com/arben-grepi/AnchorzUpTechnicalTask.git && cd AnchorzUpTechnicalTask
    ```
 
-2. Install dependencies for both:
+2. Install dependencies for both backend and the react client-app:
    ```bash
    npm i && cd react-client/ && npm i && cd ..
    ```
 
 3. ## Environment Setup
 
-**Create a `.env` file in the root of the project. This file will store the following environment-specific variables:**
-
-   - `DEBUG`: (Optional) Enables debug logging in the backend. 
-
+**Create a `.env` file in the root of the project.**
 
 **You may use the provided example below to set up your `.env` file:**
 
@@ -37,12 +34,14 @@ MONGO_URI=mongodb://localhost:27017/AnchorzUp
 PORT=5000
 DEBUG=app:log
 ```
+- `DEBUG`: (Optional) Enables debug logging in the backend. 
+
 **Save the `.env` file after making the changes..**
 
 
 ## Run the App
 
-**Run the backend and frontend concurrently with:**
+**Run the backend and frontend concurrently with from the root folder:**
 ```bash
 npm start
 ````
