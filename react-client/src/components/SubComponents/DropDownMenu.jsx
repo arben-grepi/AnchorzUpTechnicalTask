@@ -1,10 +1,5 @@
-import { Button } from "@/components/ui/button";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { Button } from "@chakra-ui/react";
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "@chakra-ui/react";
 
 const DropDownMenu = () => {
   return (
