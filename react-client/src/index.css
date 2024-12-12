@@ -88,6 +88,7 @@ h2,
 .grid {
   display: flex;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 /* MAIN SECTION */
@@ -103,7 +104,6 @@ h2,
   height: 30vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-top: 1rem;
 }
 
 /* =======================================
@@ -123,11 +123,13 @@ h2,
   .main-grid {
     height: 100vh;
     width: 70vw; /* Occupies 70% of the viewport width */
+    padding-top: 8rem;
   }
 
   .panel-grid {
     height: 100vh;
     width: 30vw; /* Occupies 30% of the viewport width */
+    padding-top: 10rem;
   }
 }
 
