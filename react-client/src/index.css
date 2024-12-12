@@ -48,7 +48,7 @@ h2 {
 
 /* Text groups with consistent margins */
 h2,
-.placeholder-text,
+.primary-text,
 .dropdownList-text,
 .shortlink-text {
   margin-top: 0;
@@ -56,9 +56,9 @@ h2,
 }
 
 /* Placeholder text styles */
-.placeholder-text {
+.primary-text {
   color: var(--color-lightGrayText);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 /* Dropdown text styles */
@@ -72,6 +72,14 @@ h2,
   color: var(--color-linkText);
   font-size: 1.4rem;
   padding-bottom: 20px;
+}
+.primary-button {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
 /* =======================================
@@ -112,6 +120,20 @@ h2,
   width: 100%; /* Full width */
 
   text-align: center; /* Center text inside the heading */
+}
+.menu-item-button {
+  width: 100%;
+}
+
+/* Hover effect */
+.menu-item-button:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+/* Active/click effect */
+.menu-item-button:active {
+  background-color: #d0d0d0;
 }
 
 /* PANEL SECTION */
@@ -160,7 +182,8 @@ h2,
     width: 30vw; /* Occupies 30% of the viewport width */
   }
   #AnchorzUpLogo {
-    width: 75%;
+    width: 100%;
+    padding-top: 25%;
     margin-bottom: 6rem;
   }
 }
