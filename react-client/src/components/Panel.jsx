@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { GlobalContext } from "../context/GlobalState";
 import { useContext, useEffect } from "react";
-import { startTimer } from "../../../utils";
 
 import LinkList from "./LinkList";
 
@@ -9,17 +8,18 @@ const Panel = () => {
   const { urls, getUrls, deleteUrl } = useContext(GlobalContext);
 
   useEffect(() => {
+    console.log("IN USE_EFFECT");
     getUrls();
-    const interval = setInterval(() => {
+    const intervalId = setInterval(() => {
+      console.log("Updating URLs...");
       getUrls();
-    }, 10000);
+    }, 60000); // every minute
 
-    // Clean up the interval on component unmount
-    return () => clearInterval(interval);
+    return () => clearInterval(intervalId); // Poistetaan edellinen ajastin ennen uuden luomista, kun komponentti poistetaan käytöstä tai efekti päivittyy.
   }, []);
 
   const handleDelete = (shortId) => {
-    deleteUrl(shortId); // Call deleteUrl from GlobalContext
+    deleteUrl(shortId);
   };
 
   return (
