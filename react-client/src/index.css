@@ -103,6 +103,7 @@ h2,
   height: 30vh;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-top: 1rem;
 }
 
 /* =======================================
