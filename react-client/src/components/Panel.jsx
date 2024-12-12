@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { GlobalContext } from "../context/GlobalState";
 import { useContext, useEffect } from "react";
 
