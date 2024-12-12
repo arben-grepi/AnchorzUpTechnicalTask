@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // Panel.jsx
 import { GlobalContext } from "../context/GlobalState";
 import { useContext, useEffect, useState } from "react";
