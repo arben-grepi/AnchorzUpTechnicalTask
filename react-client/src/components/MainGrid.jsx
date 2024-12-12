@@ -76,10 +76,13 @@ const Main = () => {
     <>
       <Stack width={"100%"}>
         <h1 className="MainHeading">URL Shortener</h1>
-        {loading && <p className="primary-text">Loading...</p>}
-        {showMessage && successMessage && (
-          <p style={{ color: "green" }}>{successMessage}</p>
-        )}
+        <Box marginLeft={"60px"}>
+          {loading && <p className="primary-text">Loading...</p>}
+          {showMessage && successMessage && (
+            <p style={{ color: "green" }}>{successMessage}</p>
+          )}
+        </Box>
+
         {error && <p style={{ color: "red" }}>{error}</p>}
 
         <Stack className="MainGrid-Stack" width={"100%"}>
