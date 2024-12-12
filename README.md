@@ -1,6 +1,6 @@
 # AnchorzUpTechnicalTask
 
-A technical task project built using Node.js and Express. This application includes various utility libraries to enhance functionality, such as QR code generation, database interaction, and environment configuration.
+**A technical task for an application for the AnchorzUp junior developer position.**
 
 ## Prerequisites
 
