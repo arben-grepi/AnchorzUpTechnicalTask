@@ -1,6 +1,7 @@
 import "./index.css";
 import { GlobalProvider } from "./context/GlobalState";
-import Panel from "./components/Panel";
+import Panel from "./components/PanelGrid";
+import { Main } from "./components/MainGrid";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
           <div className="grid panel-grid">
             <Panel />
           </div>
-          <div className="grid main-grid"></div>
+          <div className="grid main-grid">
+            <Main />
+          </div>
         </div>
       </GlobalProvider>
     </>
