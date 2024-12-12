@@ -148,6 +148,10 @@ h2,
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.shortlink-text:hover {
+  font-weight: 600; /* Slightly bolder font */
+  color: lightblue; /* Light blue color on hover */
+}
 
 /* =======================================
        Media Queries
