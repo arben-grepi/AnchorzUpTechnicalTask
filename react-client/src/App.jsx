@@ -1,5 +1,4 @@
 import "./index.css";
-import { VStack } from "@chakra-ui/react";
 import { GlobalProvider } from "./context/GlobalState";
 import Panel from "./components/Panel";
 
