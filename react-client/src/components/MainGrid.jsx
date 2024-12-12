@@ -1,6 +1,10 @@
 import { Flex, Box, Stack } from "@chakra-ui/react";
+// import { useState } from "react";
 
-export const Main = () => {
+// import { AddUrlButton } from "./SubComponents/AddUrlButton";
+// import { InputUrl } from "./SubComponents/InputUrl";
+
+const Main = () => {
   return (
     <>
       <Stack>
@@ -20,3 +24,5 @@ export const Main = () => {
     </>
   );
 };
+
+export default Main;
