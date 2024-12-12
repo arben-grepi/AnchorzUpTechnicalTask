@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@chakra-ui/react";
 
-const AddUrlButton = () => {
+const AddUrlButton = ({ onClick }) => {
   return (
-    <Button className="primary-button" size="1xl">
+    <Button className="primary-button" size="1xl" onClick={onClick}>
       <p>Shorten URL</p>
     </Button>
   );

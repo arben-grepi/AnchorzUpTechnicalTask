@@ -13,6 +13,13 @@ const AppReducer = (state, action) => {
         urls: state.urls.filter((url) => url.shortId !== action.payload),
         error: null,
       };
+    case "ADD_URL":
+      return {
+        ...state,
+        urls: [...state.urls, action.payload],
+        error: null,
+        loading: false,
+      };
     case "URLS_ERROR":
       return {
         ...state,

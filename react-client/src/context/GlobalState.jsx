@@ -48,6 +48,35 @@ export const GlobalProvider = ({ children }) => {
       });
     }
   }
+  async function createUrl(originalUrl, expirationMinutes) {
+    try {
+      const expiration = addMinutesToCurrentLocaleTime(expirationMinutes);
+      console.log(
+        "Original URL and expiration time:",
+        originalUrl,
+        expirationMinutes
+      );
+      console.log();
+      const res = await axios.post("http://localhost:5000/api/v1/urls", {
+        originalUrl,
+        expiration,
+      });
+      dispatch({
+        type: "ADD_URL",
+        payload: res.data.data, // assuming the API returns created URL under data.data
+      });
+    } catch (err) {
+      dispatch({
+        type: "URLS_ERROR",
+        payload: err.response?.data?.msg || "An error occurred",
+      });
+    }
+  }
+  const addMinutesToCurrentLocaleTime = (minutes) => {
+    const currentDate = new Date(); // Get the current date and time in local timezone
+    currentDate.setMinutes(currentDate.getMinutes() + minutes); // Add the desired minutes
+    return currentDate.toLocaleString();
+  };
 
   return (
     <GlobalContext.Provider
@@ -57,6 +86,7 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         getUrls,
         deleteUrl,
+        createUrl,
       }}
     >
       {children}
