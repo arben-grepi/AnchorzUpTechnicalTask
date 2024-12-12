@@ -9,7 +9,7 @@ const LinkList = ({ items, onDelete }) => {
   return (
     <Flex direction="column" gap="1.5rem" width={"100%"}>
       {items.map((item) => (
-        <Flex key={item.id} justify="space-between" align="center">
+        <Flex key={item.shortId} justify="space-between" align="center">
           <Box>
             <a
               className="shortlink-text"
