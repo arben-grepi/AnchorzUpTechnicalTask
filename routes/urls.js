@@ -72,4 +72,32 @@ router.post("/", async (req, res) => {
   }
 });
 
+// DELETE method to remove a URL by shortId
+router.delete("/:shortId", async (req, res) => {
+  const { shortId } = req.params;
+
+  try {
+    const url = await Url.findOneAndDelete({ shortId });
+
+    if (!url) {
+      return res.status(404).json({
+        success: false,
+        message: "URL not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "URL deleted successfully",
+      data: url,
+    });
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+});
+
 export default router;

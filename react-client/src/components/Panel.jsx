@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import LinkList from "./LinkList";
 
 const Panel = () => {
-  const { urls, getUrls } = useContext(GlobalContext);
+  const { urls, getUrls, deleteUrl } = useContext(GlobalContext);
 
   useEffect(() => {
     getUrls();
@@ -17,12 +17,14 @@ const Panel = () => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log(urls);
+  const handleDelete = (shortId) => {
+    deleteUrl(shortId); // Call deleteUrl from GlobalContext
+  };
 
   return (
     <div>
       <h2>Panel</h2>
-      <LinkList items={urls} />
+      <LinkList items={urls} onDelete={handleDelete} />
     </div>
   );
 };

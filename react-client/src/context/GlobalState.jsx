@@ -34,6 +34,21 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function deleteUrl(shortId) {
+    try {
+      await axios.delete(`http://localhost:5000/api/v1/urls/${shortId}`);
+      dispatch({
+        type: "DELETE_URL",
+        payload: shortId,
+      });
+    } catch (err) {
+      dispatch({
+        type: "URLS_ERROR",
+        payload: err.response?.data?.msg || "An error occurred",
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -41,6 +56,7 @@ export const GlobalProvider = ({ children }) => {
         error: state.error,
         loading: state.loading,
         getUrls,
+        deleteUrl,
       }}
     >
       {children}

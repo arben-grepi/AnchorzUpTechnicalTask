@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Flex, Box } from "@chakra-ui/react";
 
-const YourComponent = ({ items }) => {
+const LinkList = ({ items, onDelete }) => {
+  const handleDelete = (shortId) => {
+    onDelete(shortId); // Call the parent function with the shortId
+  };
+
   return (
     <Flex direction="column" gap="1.5rem" width={"100%"}>
       {items.map((item) => (
@@ -17,7 +21,12 @@ const YourComponent = ({ items }) => {
             </a>
           </Box>
           <Box>
-            <span role="img" aria-label="Delete">
+            <span
+              role="img"
+              aria-label="Delete"
+              onClick={() => handleDelete(item.shortId)} // Pass shortId to handleDelete
+              style={{ cursor: "pointer" }} // Add cursor pointer for better UX
+            >
               🗑️
             </span>
           </Box>
@@ -27,4 +36,4 @@ const YourComponent = ({ items }) => {
   );
 };
 
-export default YourComponent;
+export default LinkList;

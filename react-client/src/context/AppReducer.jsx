@@ -7,6 +7,12 @@ const AppReducer = (state, action) => {
         error: null,
         loading: false,
       };
+    case "DELETE_URL":
+      return {
+        ...state,
+        urls: state.urls.filter((url) => url.shortId !== action.payload),
+        error: null,
+      };
     case "URLS_ERROR":
       return {
         ...state,
