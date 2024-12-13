@@ -5,14 +5,12 @@ export function addMinutesToCurrentLocaleTime(minutes) {
 }
 
 // Function to compare a given date-time string with the current date-time
-export function isInputDateTimeInThePast(dateTimeString) {
+export function isDateExpired(dateTimeString) {
   // Get the current date-time
   const currentDate = new Date();
 
   // Parse the input date string into a Date object
   const inputDate = new Date(dateTimeString);
-  console.log("inputDate", inputDate);
-  console.log("currentDate", currentDate);
 
   // Check if the input date is valid
   if (isNaN(inputDate)) {
@@ -25,13 +23,4 @@ export function isInputDateTimeInThePast(dateTimeString) {
   } else {
     return false; // The current date is before the input date
   }
-}
-
-// Example usage
-try {
-  const input = "12/12/2024, 1:54:01 PM";
-  const result = isInputDateTimeInThePast(input);
-  console.log(`The date-time is: ${result}`);
-} catch (error) {
-  console.error(error.message);
 }

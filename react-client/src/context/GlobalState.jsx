@@ -52,11 +52,10 @@ export const GlobalProvider = ({ children }) => {
     try {
       const expiration = addMinutesToCurrentLocaleTime(expirationMinutes);
       console.log(
-        "Original URL and expiration time:",
+        "Original URL and expiration time in minutes:",
         originalUrl,
         expirationMinutes
       );
-      console.log();
       const res = await axios.post("http://localhost:5000/api/v1/urls", {
         originalUrl,
         expiration,

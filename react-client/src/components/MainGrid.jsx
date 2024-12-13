@@ -41,8 +41,6 @@ const Main = () => {
       return;
     }
 
-    console.log("Adding URL:", originalUrl);
-    console.log("Selected time in minutes:", selectedTime);
     await createUrl(originalUrl, selectedTime);
 
     if (!error) {
@@ -52,6 +50,11 @@ const Main = () => {
       // Clear input fields
       setOriginalUrl("");
       setSelectedTime(selectedTime);
+
+      // Re-focus the input after successful creation
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
     }
   };
 
@@ -99,7 +102,7 @@ const Main = () => {
             <Box>
               <DropDownMenu
                 placeholder="Select Duration"
-                times={[2, 5, 30, 120, 1500, 45000]}
+                times={[1, 2, 5, 30, 120, 1500, 45000]}
                 onSelectTime={handleTimeSelect}
               />
             </Box>

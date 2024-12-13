@@ -5,7 +5,10 @@ const urlSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide the original URL"],
     unique: true,
-    match: [/^https?:\/\/[^\s$.?#].[^\s]*$/, "Please provide a valid URL"],
+    match: [
+      /^https:\/\/www\.[^\s]+$/,
+      "Please provide a valid URL starting with https://www.",
+    ],
   },
   shortId: {
     type: String,
