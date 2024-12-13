@@ -28,7 +28,7 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
                 rel="noopener noreferrer"
                 onClick={() => handleLinkClickInternal(item.qrCode)}
               >
-                www.shortid.com/{item.shortId}
+                www.shortUrl.com/{item.shortId}
               </a>
             </Tooltip>
           </Box>
