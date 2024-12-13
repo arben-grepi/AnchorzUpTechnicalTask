@@ -32,13 +32,14 @@ const DropDownMenu = ({ placeholder, times, onSelectTime }) => {
     placeholder || "set a duration"
   );
 
-  const handleSelect = (timeInMinutes) => {
+  const handleSelect = (index) => {
+    console.log("Selected time in minutes:", index);
     // Update the placeholder text first
-    setPlaceHolderValue(formatMinutes(timeInMinutes));
+    setPlaceHolderValue(formatMinutes(index));
 
     // If a callback is provided, call it with the raw minutes value
     if (typeof onSelectTime === "function") {
-      onSelectTime(timeInMinutes);
+      onSelectTime(index);
     }
   };
 
