@@ -50,6 +50,15 @@ const PanelGrid = () => {
   }
 
   const handleDelete = (shortId) => {
+    // Check if the selected QR code corresponds to the URL being deleted
+    const urlToDelete = urls.find((url) => url.shortId === shortId);
+
+    if (urlToDelete && selectedQRCode === urlToDelete.qrCode) {
+      // Clear the selected QR code from the screen
+      setSelectedQRCode(null);
+    }
+
+    // Proceed with the deletion
     deleteUrl(shortId);
   };
 
