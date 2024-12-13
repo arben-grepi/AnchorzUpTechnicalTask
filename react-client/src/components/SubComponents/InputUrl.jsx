@@ -8,13 +8,20 @@ const InputUrl = forwardRef((props, ref) => {
   const { placeholder, value, onChange, onKeyDown } = props;
 
   const handleChange = (e) => {
-    let newValue = e.target.value;
+    const inputType = e.nativeEvent.inputType;
 
-    // Check if the value is at least 4 chars and doesn't start with the prefix
+    // If the user is deleting text (backspace or delete), don't add the prefix
+    if (inputType.startsWith("delete")) {
+      onChange(e);
+      return;
+    }
+
+    let newValue = e.target.value;
     if (newValue.length >= 4 && !newValue.startsWith("https://www.")) {
       newValue = "https://www." + newValue;
     }
 
+    // Pass the modified value back up
     onChange({
       ...e,
       target: {
