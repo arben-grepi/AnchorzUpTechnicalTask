@@ -20,6 +20,16 @@ const AppReducer = (state, action) => {
         error: null,
         loading: false,
       };
+    case "INCREMENT_CLICK":
+      return {
+        ...state,
+        urls: state.urls.map((url) =>
+          url.shortId === action.payload.shortId ? action.payload : url
+        ),
+        error: null,
+        loading: false,
+      };
+
     case "URLS_ERROR":
       return {
         ...state,

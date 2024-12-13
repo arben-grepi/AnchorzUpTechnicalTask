@@ -2,14 +2,21 @@
 /* eslint-disable react/prop-types */
 import { Flex, Box } from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalState";
 
 const LinkList = ({ items, onDelete, onLinkClick }) => {
+  const { incrementClickCount } = useContext(GlobalContext);
+
   const handleDelete = (shortId) => {
     onDelete(shortId);
   };
 
-  const handleLinkClickInternal = (qrCode) => {
-    // Kutsutaan parentin onLinkClick-funktiota, annetaan qrCode
+  const handleLinkClickInternal = (qrCode, shortId) => {
+    // First increment the click count in the global state (server-side as well)
+    incrementClickCount(shortId);
+
+    // If parent component passed an onLinkClick, call it with the QR code
     if (onLinkClick) {
       onLinkClick(qrCode);
     }
@@ -26,7 +33,9 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
                 href={item.originalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => handleLinkClickInternal(item.qrCode)}
+                onClick={() =>
+                  handleLinkClickInternal(item.qrCode, item.shortId)
+                }
               >
                 www.shortUrl.com/{item.shortId}
               </a>

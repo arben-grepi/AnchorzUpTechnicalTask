@@ -72,6 +72,23 @@ export const GlobalProvider = ({ children }) => {
       });
     }
   }
+  async function incrementClickCount(shortId) {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/api/v1/urls/${shortId}/click`
+      );
+      dispatch({
+        type: "INCREMENT_CLICK",
+        payload: res.data.data, // the updated URL object
+      });
+    } catch (err) {
+      dispatch({
+        type: "URLS_ERROR",
+        payload: err.response?.data?.msg || "An error occurred",
+      });
+    }
+  }
+
   const addMinutesToCurrentLocaleTime = (minutes) => {
     const currentDate = new Date(); // Get the current date and time in local timezone
     currentDate.setMinutes(currentDate.getMinutes() + minutes); // Add the desired minutes
@@ -87,6 +104,7 @@ export const GlobalProvider = ({ children }) => {
         getUrls,
         deleteUrl,
         createUrl,
+        incrementClickCount,
       }}
     >
       {children}
