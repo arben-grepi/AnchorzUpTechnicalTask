@@ -144,12 +144,9 @@ h2,
   overflow-x: hidden;
 }
 #AnchorzUpLogo {
-  width: 60%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  padding: 10%;
 }
 .shortlink-text:hover {
-  font-weight: 600; /* Slightly bolder font */
   color: lightblue; /* Light blue color on hover */
 }
 
