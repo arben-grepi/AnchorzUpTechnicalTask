@@ -2,8 +2,6 @@ import express from "express";
 import Url from "../models/Url.js"; // Import the Url model
 import { nanoid } from "nanoid"; // For generating short IDs
 import QRCode from "qrcode"; // Import QRCode library
-import debug from "debug";
-const log = debug("app:log");
 
 const router = express.Router();
 
@@ -87,7 +85,6 @@ router.put("/:shortId/click", async (req, res) => {
     if (!url) {
       return res.status(404).json({ msg: "URL not found" });
     }
-    log("Updated Click Count:", url.clickCount); // Log the updated click amount
     return res.status(200).json({ success: true, data: url });
   } catch (error) {
     console.error(error);

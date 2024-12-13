@@ -12,9 +12,14 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
     onDelete(shortId);
   };
 
-  const handleLinkClickInternal = (qrCode, shortId) => {
+  const handleLinkClickInternal = (qrCode, shortId, clickCount) => {
     // First increment the click count in the global state (server-side as well)
     incrementClickCount(shortId);
+
+    // Then show the click count on the browsers console.
+    console.log(
+      `URL www.shortUrl.com/${shortId} clicked ${clickCount + 1} times`
+    );
 
     // If parent component passed an onLinkClick, call it with the QR code
     if (onLinkClick) {
@@ -34,7 +39,11 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() =>
-                  handleLinkClickInternal(item.qrCode, item.shortId)
+                  handleLinkClickInternal(
+                    item.qrCode,
+                    item.shortId,
+                    item.clickCount
+                  )
                 }
               >
                 www.shortUrl.com/{item.shortId}
