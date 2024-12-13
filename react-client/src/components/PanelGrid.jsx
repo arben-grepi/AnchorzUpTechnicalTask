@@ -4,7 +4,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { useContext, useEffect, useState } from "react";
 import Logo from "./SubComponents/Logo";
 import LinkList from "./SubComponents/LinkList";
-import { isDateExpired } from "../utils";
+import { isDateExpired, logTable } from "../utils";
 import { Stack } from "@chakra-ui/react";
 import chalk from "chalk";
 
@@ -27,14 +27,8 @@ const PanelGrid = () => {
   }, [urls]);
   function DeleteExpiredURLs() {
     console.log("Checking all URLs for expiration...");
-    console.table(
-      urls.map((url) => ({
-        shortId: url.shortId,
-        expired: isDateExpired(url.expiration),
-        expiration: url.expiration,
-      }))
-    );
-
+    if (urls.length === 0) return;
+    logTable(urls);
     urls.forEach((url) => {
       if (isDateExpired(url.expiration)) {
         handleDelete(url.shortId);

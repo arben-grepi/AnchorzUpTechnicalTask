@@ -25,13 +25,10 @@ const Main = () => {
   }, []);
 
   const handleTimeSelect = (selectedMinutes) => {
-    console.log("Selected time in minutes:", selectedMinutes);
     setSelectedTime(selectedMinutes);
   };
 
   const handleAddUrl = async () => {
-    console.log("clicked");
-    console.log(originalUrl);
     if (!originalUrl) {
       alert("Please enter a URL before adding");
       return;
@@ -42,6 +39,7 @@ const Main = () => {
     }
 
     await createUrl(originalUrl, selectedTime);
+    console.log(`URL added: ${originalUrl} for ${selectedTime} minutes`);
 
     if (!error) {
       setSuccessMessage("URL shortened successfully!");

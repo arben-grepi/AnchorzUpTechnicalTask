@@ -24,3 +24,20 @@ export function isDateExpired(dateTimeString) {
     return false; // The current date is before the input date
   }
 }
+
+export function logTable(urls) {
+  // Prepare the table data
+  const tableData = urls.map((url) => ({
+    shortId: url.shortId,
+    expired: isDateExpired(url.expiration),
+    expiration: url.expiration,
+  }));
+
+  // Log the headers
+  console.log("shortId | expired | expiration");
+  // Log each row
+  tableData.forEach(({ shortId, expired, expiration }) => {
+    console.log(`${shortId}   | ${expired}   | ${expiration}`);
+  });
+  console.log("--------------------------------");
+}
