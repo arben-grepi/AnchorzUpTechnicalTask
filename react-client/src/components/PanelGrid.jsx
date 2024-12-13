@@ -6,6 +6,7 @@ import Logo from "./SubComponents/Logo";
 import LinkList from "./SubComponents/LinkList";
 import { isDateExpired } from "../utils";
 import { Stack } from "@chakra-ui/react";
+import chalk from "chalk";
 
 const PanelGrid = () => {
   const { urls, getUrls, deleteUrl } = useContext(GlobalContext);
@@ -25,22 +26,25 @@ const PanelGrid = () => {
     // Run DeleteExpiredURLs whenever urls update
     DeleteExpiredURLs();
   }, [urls]);
-
   function DeleteExpiredURLs() {
+    console.log("Checking all URLs for expiration...");
+    console.table(
+      urls.map((url) => ({
+        shortId: url.shortId,
+        expired: isDateExpired(url.expiration),
+        expiration: url.expiration,
+      }))
+    );
+
     urls.forEach((url) => {
-      const expired = isDateExpired(url.expiration);
-      console.log("-------------");
-      console.log("Checking if URL is expired...");
-      console.log(
-        `url ${url.shortId} expired: ${expired}, expiration: ${url.expiration}}`
-      );
       if (isDateExpired(url.expiration)) {
         deleteUrl(url.shortId);
-        console.log("URL expired:", url.shortId);
+        console.log(chalk.red("URL expired:"), chalk.yellow(url.shortId));
         console.log(
-          `DELETED URL with id ${url.shortId}. Long URL: ${url.originalUrl}`
+          chalk.green(
+            `DELETED URL with id ${url.shortId}. Long URL: ${url.originalUrl}`
+          )
         );
-        console.log("-------------");
       }
     });
   }
