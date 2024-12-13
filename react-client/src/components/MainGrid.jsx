@@ -81,9 +81,8 @@ const Main = () => {
           {showMessage && successMessage && (
             <p style={{ color: "green" }}>{successMessage}</p>
           )}
+          {error && <p style={{ color: "red" }}>{error}</p>}
         </Box>
-
-        {error && <p style={{ color: "red" }}>{error}</p>}
 
         <Stack className="MainGrid-Stack" width={"100%"}>
           <div></div>
