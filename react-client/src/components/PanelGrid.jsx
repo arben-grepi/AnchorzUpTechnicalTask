@@ -15,7 +15,6 @@ const PanelGrid = () => {
   useEffect(() => {
     getUrls();
     const intervalId = setInterval(() => {
-      console.log("Updating URLs...");
       getUrls();
     }, 10000);
 
@@ -38,7 +37,7 @@ const PanelGrid = () => {
 
     urls.forEach((url) => {
       if (isDateExpired(url.expiration)) {
-        deleteUrl(url.shortId);
+        handleDelete(url.shortId);
         console.log(chalk.red("URL expired:"), chalk.yellow(url.shortId));
         console.log(
           chalk.green(
