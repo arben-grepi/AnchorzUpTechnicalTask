@@ -1,37 +1,49 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Stack } from "@chakra-ui/react";
-import chalk from "chalk";
-import { useContext, useEffect, useState } from "react";
+import { Stack } from "@chakra-ui/react"; // Import Chakra UI Stack for layout
+import chalk from "chalk"; // Import chalk for colorful console logs
+import { useContext, useEffect, useState } from "react"; // Import React hooks
 
-import { GlobalContext } from "../context/GlobalState";
-import Logo from "./SubComponents/Logo";
-import LinkList from "./SubComponents/LinkList";
-import { isDateExpired, logTable } from "../utils";
+import { GlobalContext } from "../context/GlobalState"; // Import global state context
+import Logo from "./SubComponents/Logo"; // Import Logo component
+import LinkList from "./SubComponents/LinkList"; // Import LinkList component
+import { isDateExpired, logTable } from "../utils"; // Utility functions for date checks and logging
 
+/**
+ * PanelGrid component
+ * Displays a list of shortened URLs, their associated QR codes, and manages expired URL deletion.
+ */
 const PanelGrid = () => {
-  const { urls, getUrls, deleteUrl } = useContext(GlobalContext);
-  const [selectedQRCode, setSelectedQRCode] = useState(null);
+  const { urls, getUrls, deleteUrl } = useContext(GlobalContext); // Access global state and actions
+  const [selectedQRCode, setSelectedQRCode] = useState(null); // Tracks the selected QR code for display
 
+  // Fetch URLs when the component mounts and at regular intervals (every 10 seconds)
   useEffect(() => {
-    getUrls();
+    getUrls(); // Initial fetch of URLs
     const intervalId = setInterval(() => {
-      getUrls();
+      getUrls(); // Periodic fetch of URLs
     }, 10000);
 
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); // Clear the interval when the component unmounts
   }, []);
 
+  // Check for expired URLs whenever the list of URLs updates
   useEffect(() => {
-    // Run DeleteExpiredURLs whenever urls update
     DeleteExpiredURLs();
   }, [urls]);
+
+  /**
+   * Deletes all expired URLs from the list.
+   * Logs details of expired URLs and their deletion process.
+   */
   function DeleteExpiredURLs() {
     console.log("Checking all URLs for expiration...");
-    if (urls.length === 0) return;
-    logTable(urls);
+    if (urls.length === 0) return; // No URLs to check
+
+    logTable(urls); // Log the current list of URLs in table format
+
     urls.forEach((url) => {
       if (isDateExpired(url.expiration)) {
-        handleDelete(url.shortId);
+        handleDelete(url.shortId); // Delete the expired URL
         console.log(chalk.red("URL expired:"), chalk.yellow(url.shortId));
         console.log(
           chalk.green(
@@ -42,31 +54,38 @@ const PanelGrid = () => {
     });
   }
 
+  /**
+   * Handles the deletion of a URL.
+   * Clears the selected QR code if it corresponds to the deleted URL.
+   *
+   * @param {string} shortId - The unique identifier of the URL to delete.
+   */
   const handleDelete = (shortId) => {
-    // Check if the selected QR code corresponds to the URL being deleted
     const urlToDelete = urls.find((url) => url.shortId === shortId);
 
+    // Clear the QR code display if it corresponds to the URL being deleted
     if (urlToDelete && selectedQRCode === urlToDelete.qrCode) {
-      // Clear the selected QR code from the screen
       setSelectedQRCode(null);
     }
 
-    // Proceed with the deletion
-    deleteUrl(shortId);
+    deleteUrl(shortId); // Proceed with the deletion via global state action
   };
 
-  // UUSI FUNKTIO: asetetaan valittu QR-koodi
+  /**
+   * Handles the selection of a QR code for display.
+   *
+   * @param {string} qrCode - The Base64-encoded QR code of the selected link.
+   */
   const handleLinkClick = (qrCode) => {
-    setSelectedQRCode(qrCode);
+    setSelectedQRCode(qrCode); // Set the selected QR code for display
   };
 
   return (
     <div style={{ justifyContent: "center" }}>
       <Stack spacing="1rem" align="center" justify="center">
-        <Logo />
+        <Logo /> {/* Display the logo */}
         <h2>My shortened URLs</h2>
-
-        {/* Jos selectedQRCode on asetettu, näytetään kuva */}
+        {/* Display the selected QR code if one is set */}
         {selectedQRCode && (
           <img
             src={selectedQRCode}
@@ -79,15 +98,15 @@ const PanelGrid = () => {
             }}
           />
         )}
-
+        {/* Render the list of URLs with actions for deletion and QR code selection */}
         <LinkList
-          items={urls}
-          onDelete={handleDelete}
-          onLinkClick={handleLinkClick}
+          items={urls} // Pass the list of URLs to display
+          onDelete={handleDelete} // Provide the deletion handler
+          onLinkClick={handleLinkClick} // Handle QR code selection
         />
       </Stack>
     </div>
   );
 };
 
-export default PanelGrid;
+export default PanelGrid; // Export the PanelGrid component
