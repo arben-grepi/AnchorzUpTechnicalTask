@@ -1,7 +1,8 @@
 import express from "express";
-import Url from "../models/Url.js"; // Import the Url model
-import { nanoid } from "nanoid"; // For generating short IDs
 import QRCode from "qrcode"; // Import QRCode library
+import { nanoid } from "nanoid"; // For generating short IDs
+
+import Url from "../models/Url.js"; // Import the Url model
 
 const router = express.Router();
 
