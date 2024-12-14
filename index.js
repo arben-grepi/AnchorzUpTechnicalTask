@@ -1,13 +1,12 @@
 import "./config.js"; // Ensure dotenv is loaded before any other imports
-import connectDB from "./db/MongoDBConnect.js";
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
-import debug from "debug";
-import cors from "cors"; // Import CORS
-import urlRoutes from "./routes/urls.js";
+import cors from "cors";
 
-const log = debug("app:log");
+import connectDB from "./db/MongoDBConnect.js";
+import urlRoutes from "./routes/urls.js";
+import log from "./logger.js";
 
 const app = express();
 
