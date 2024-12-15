@@ -95,9 +95,12 @@ const Main = () => {
 
   return (
     <>
-      <Stack width={"100%"}>
-        <h1 className="MainHeading">URL Shortener</h1>
-        <Box marginLeft={"60px"}>
+      <Stack className="align-immidiate-children-center" width={"100%"}>
+        <Box>
+          <h1>URL Shortener</h1>
+        </Box>
+        <Box>
+          <p>Shorten your URLs for free</p>
           {/* Display loading, success, or error messages */}
           {loading && <p className="primary-text">Loading...</p>}
           {showMessage && successMessage && (
@@ -105,31 +108,21 @@ const Main = () => {
           )}
           {error && <p style={{ color: "red" }}>{error}</p>}
         </Box>
-
-        <Stack className="MainGrid-Stack" width={"100%"}>
-          <div></div>
-          <Flex className="MainGrid-Flex">
-            <Box width={"60%"}>
-              <InputUrl
-                ref={inputRef} // Attach ref to manage focus
-                placeholder="www.example.com" // Placeholder text for input
-                value={originalUrl} // Bind input value to state
-                onChange={(e) => setOriginalUrl(e.target.value)} // Update state on input change
-                onKeyDown={handleKeyDown} // Trigger URL addition on Enter
-              />
-            </Box>
-            <Box>
-              <DropDownMenu
-                placeholder="Select Duration" // Placeholder for the dropdown
-                times={[1, 2, 5, 30, 120, 1500, 45000]} // Predefined duration options in minutes
-                onSelectTime={handleTimeSelect} // Handle duration selection
-              />
-            </Box>
-          </Flex>
-          <Box paddingTop={"2rem"} id="AddUrlButton">
-            <AddUrlButton onClick={handleAddUrl} /> {/* Button to add URL */}
-          </Box>
-        </Stack>
+        <Flex flexDirection={"column"}>
+          <InputUrl
+            ref={inputRef} // Attach ref to manage focus
+            placeholder="www.example.com" // Placeholder text for input
+            value={originalUrl} // Bind input value to state
+            onChange={(e) => setOriginalUrl(e.target.value)} // Update state on input change
+            onKeyDown={handleKeyDown} // Trigger URL addition on Enter
+          />
+          <DropDownMenu
+            placeholder="Select Duration" // Placeholder for the dropdown
+            times={[1, 2, 5, 30, 120, 1500, 45000]} // Predefined duration options in minutes
+            onSelectTime={handleTimeSelect} // Handle duration selection
+          />
+        </Flex>
+        <AddUrlButton onClick={handleAddUrl} /> {/* Button to add URL */}
       </Stack>
     </>
   );

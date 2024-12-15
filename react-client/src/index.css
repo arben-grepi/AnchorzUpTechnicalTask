@@ -113,13 +113,8 @@ h2,
   gap: 2rem;
 }
 
-.MainHeading {
-  display: flex; /* Flexbox layout */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  width: 100%; /* Full width */
-
-  text-align: center; /* Center text inside the heading */
+.align-immidiate-children-center > * {
+  margin: 0 auto;
 }
 .menu-item-button {
   width: 100%;
@@ -175,7 +170,7 @@ h2,
   .MainGrid-Flex {
     flex-direction: row;
   }
-  .MainHeading {
+  .align-immidiate-children-center {
     padding-right: 25%;
   }
 
