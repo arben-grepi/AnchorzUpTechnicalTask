@@ -9,8 +9,8 @@ const urlSchema = new mongoose.Schema({
     required: [true, "Please provide the original URL"], // Ensures the original URL is provided
     unique: true, // Prevents duplicate entries for the same URL
     match: [
-      /^https:\/\/www\.[^\s]+$/, // Regex for validating URLs starting with "https://www."
-      "Please provide a valid URL starting with https://www.", // Custom error message for invalid URLs
+      /^https:\/\/short\.link\/[^\s]+$/, // Regex for validating URLs starting with "https://short.link/"
+      "Please provide a valid URL starting with https://short.link/", // Custom error message for invalid URLs
     ],
   },
   shortId: {

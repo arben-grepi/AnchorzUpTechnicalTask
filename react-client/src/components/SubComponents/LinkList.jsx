@@ -40,7 +40,7 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
 
     // Log the updated click count to the console
     console.log(
-      `URL www.shortUrl.com/${shortId} clicked ${clickCount + 1} times`
+      `URL https://short.link/${shortId} clicked ${clickCount + 1} times`
     );
 
     // Invoke the parent-provided link click handler, if available
@@ -69,7 +69,7 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
                   )
                 }
               >
-                www.shortUrl.com/{item.shortId}
+                https://short.link/{item.shortId}
               </a>
             </Tooltip>
           </Box>
