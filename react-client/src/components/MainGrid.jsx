@@ -62,7 +62,7 @@ const Main = () => {
       setSuccessMessage("URL shortened successfully!");
       setShowMessage(true);
       setOriginalUrl(""); // Clear the input field
-      setSelectedTime(null); // Reset the duration selection
+      setSelectedTime(selectedTime); // Reset the duration selection
 
       // Re-focus the input field
       if (inputRef.current) {
