@@ -40,10 +40,18 @@ function formatMinutes(minutes) {
  * @param {string} [props.placeholder="set a duration"] - The initial placeholder text for the menu button.
  * @param {number[]} props.times - An array of time durations (in minutes) for the dropdown options.
  * @param {Function} props.onSelectTime - Callback function invoked with the selected time (in minutes).
+ * @param {string} [props.size="md"] - The size of the button.
+ * @param {string} [props.width="auto"] - The width of the button.
  *
  * @returns {JSX.Element} - The rendered dropdown menu component.
  */
-const DropDownMenu = ({ placeholder, times, onSelectTime }) => {
+const DropDownMenu = ({
+  placeholder,
+  times,
+  onSelectTime,
+  size = "md",
+  width = "auto",
+}) => {
   // State to manage the current placeholder value displayed on the menu button
   const [placeholderValue, setPlaceHolderValue] = useState(
     placeholder || "set a duration"
@@ -69,11 +77,11 @@ const DropDownMenu = ({ placeholder, times, onSelectTime }) => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <Button variant="outline" size="2xl">
+        <Button variant="outline" size={size} width={width}>
           {placeholderValue} {/* Displays the current placeholder value */}
         </Button>
       </MenuTrigger>
-      <MenuContent size="xl">
+      <MenuContent>
         {times.map((timeInMinutes, index) => (
           <MenuItem
             key={index}
@@ -81,7 +89,12 @@ const DropDownMenu = ({ placeholder, times, onSelectTime }) => {
             onClick={() => handleSelect(timeInMinutes)} // Handle item selection
           >
             {/* Menu item displayed as a button */}
-            <Button className="menu-item-button" variant="outline" size="lg">
+            <Button
+              className={"menu-item-button"}
+              variant="outline"
+              size={size} // Pass size dynamically
+              width={width} // Pass width dynamically
+            >
               {formatMinutes(timeInMinutes)}
             </Button>
           </MenuItem>

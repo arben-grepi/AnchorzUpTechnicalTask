@@ -1,9 +1,9 @@
-import { Flex, Box, Stack } from "@chakra-ui/react"; // Import Chakra UI layout components
+import { Flex, Stack } from "@chakra-ui/react"; // Import Chakra UI layout components
 import { useState, useContext, useEffect, useRef } from "react"; // Import React hooks
 
-import InputUrl from "./SubComponents/InputUrl"; // Input component for entering the URL
-import DropDownMenu from "./SubComponents/DropDownMenu"; // Dropdown for selecting duration
-import AddUrlButton from "./SubComponents/AddUrlButton"; // Button to add the URL
+import InputUrl from "./InputUrl"; // Input component for entering the URL
+import DropDownMenu from "./DropDownMenu"; // Dropdown for selecting duration
+import AddUrlButton from "./AddUrlButton"; // Button to add the URL
 import { GlobalContext } from "../context/GlobalState"; // Context for global state management
 
 /**
@@ -29,6 +29,17 @@ const Main = () => {
       inputRef.current.focus();
     }
   }, []);
+
+  // Automatically hide success or error messages after 5 seconds
+  useEffect(() => {
+    let timer;
+    if (showMessage || error) {
+      timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 5000);
+    }
+    return () => clearTimeout(timer); // Clean up the timer on unmount
+  }, [showMessage, error]);
 
   /**
    * Handles selection of duration from the dropdown menu.
@@ -71,17 +82,6 @@ const Main = () => {
     }
   };
 
-  // Automatically hide success or error messages after 5 seconds
-  useEffect(() => {
-    let timer;
-    if (showMessage || error) {
-      timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 5000);
-    }
-    return () => clearTimeout(timer); // Clean up the timer on unmount
-  }, [showMessage, error]);
-
   /**
    * Handles keydown events, triggering URL addition on pressing Enter.
    *
@@ -95,35 +95,41 @@ const Main = () => {
 
   return (
     <>
-      <Stack className="align-immidiate-children-center" width={"100%"}>
-        <Box>
+      <Stack width={"100%"}>
+        <div className="heading-div">
           <h1>URL Shortener</h1>
-        </Box>
-        <Box>
-          <p>Shorten your URLs for free</p>
+        </div>
+        <div>
           {/* Display loading, success, or error messages */}
           {loading && <p className="primary-text">Loading...</p>}
           {showMessage && successMessage && (
-            <p style={{ color: "green" }}>{successMessage}</p>
+            <p className="success-text">{successMessage}</p>
           )}
-          {error && <p style={{ color: "red" }}>{error}</p>}
-        </Box>
-        <Flex flexDirection={"column"}>
+        </div>
+        <Flex className="main-flex">
           <InputUrl
+            size="2xl"
+            width="90%"
             ref={inputRef} // Attach ref to manage focus
-            placeholder="www.example.com" // Placeholder text for input
+            placeholder="https://www.example.com" // Placeholder text for input
             value={originalUrl} // Bind input value to state
             onChange={(e) => setOriginalUrl(e.target.value)} // Update state on input change
             onKeyDown={handleKeyDown} // Trigger URL addition on Enter
           />
           <DropDownMenu
+            className="dropdown-menu"
+            alignItems="center"
+            size="2xl"
+            width="100px"
             placeholder="Select Duration" // Placeholder for the dropdown
             times={[1, 2, 5, 30, 120, 1500, 45000]} // Predefined duration options in minutes
             onSelectTime={handleTimeSelect} // Handle duration selection
           />
         </Flex>
-        <AddUrlButton onClick={handleAddUrl} /> {/* Button to add URL */}
       </Stack>
+      <div className="add-url-button-div">
+        <AddUrlButton onClick={handleAddUrl} />
+      </div>
     </>
   );
 };

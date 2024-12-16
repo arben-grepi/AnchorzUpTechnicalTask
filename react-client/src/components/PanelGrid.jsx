@@ -4,8 +4,8 @@ import chalk from "chalk"; // Import chalk for colorful console logs
 import { useContext, useEffect, useState } from "react"; // Import React hooks
 
 import { GlobalContext } from "../context/GlobalState"; // Import global state context
-import Logo from "./SubComponents/Logo"; // Import Logo component
-import LinkList from "./SubComponents/LinkList"; // Import LinkList component
+import Logo from "./Logo"; // Import Logo component
+import LinkList from "./LinkList"; // Import LinkList component
 import { isDateExpired, logTable } from "../utils"; // Utility functions for date checks and logging
 
 /**
@@ -81,31 +81,33 @@ const PanelGrid = () => {
   };
 
   return (
-    <div style={{ justifyContent: "center" }}>
-      <Stack spacing="1rem" align="center" justify="center">
-        <Logo /> {/* Display the logo */}
-        <h2>My shortened URLs</h2>
-        {/* Display the selected QR code if one is set */}
-        {selectedQRCode && (
-          <img
-            src={selectedQRCode}
-            alt="QR code for selected link"
-            style={{
-              width: "200px",
-              height: "200px",
-              marginBottom: "30px",
-              marginTop: "10px",
-            }}
-          />
-        )}
-        {/* Render the list of URLs with actions for deletion and QR code selection */}
-        <LinkList
-          items={urls} // Pass the list of URLs to display
-          onDelete={handleDelete} // Provide the deletion handler
-          onLinkClick={handleLinkClick} // Handle QR code selection
+    <Stack
+      className={`panel-stack ${
+        urls.length === 0 ? "panel-stack-empty-urls" : ""
+      }`}
+    >
+      <Logo id="AnchorzUpLogo" /> {/* Display the logo */}
+      {urls.length > 0 && <h2>My shortened URLs</h2>}
+      {/* Display the selected QR code if one is set */}
+      {selectedQRCode && (
+        <img
+          src={selectedQRCode}
+          alt="QR code for selected link"
+          style={{
+            width: "200px",
+            height: "200px",
+            marginBottom: "30px",
+            marginTop: "10px",
+          }}
         />
-      </Stack>
-    </div>
+      )}
+      {/* Render the list of URLs with actions for deletion and QR code selection */}
+      <LinkList
+        items={urls} // Pass the list of URLs to display
+        onDelete={handleDelete} // Provide the deletion handler
+        onLinkClick={handleLinkClick} // Handle QR code selection
+      />
+    </Stack>
   );
 };
 

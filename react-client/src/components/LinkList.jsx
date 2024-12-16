@@ -3,8 +3,8 @@
 
 import { Flex, Box } from "@chakra-ui/react"; // Import layout components from Chakra UI
 import { Tooltip } from "@/components/ui/tooltip"; // Import custom Tooltip component
-import { useContext } from "react"; // Import React hook for context management
-import { GlobalContext } from "../../context/GlobalState"; // Import the global state context
+import { useContext, useState } from "react"; // Import React hook for context management
+import { GlobalContext } from "../context/GlobalState"; // Import the global state context
 
 /**
  * Renders a list of shortened links with associated actions like clicking and deleting.
@@ -17,6 +17,9 @@ import { GlobalContext } from "../../context/GlobalState"; // Import the global 
 const LinkList = ({ items, onDelete, onLinkClick }) => {
   // Access the global state method to increment click counts
   const { incrementClickCount } = useContext(GlobalContext);
+
+  // State to track clicked items
+  const [clickedItems, setClickedItems] = useState({});
 
   /**
    * Handles the deletion of a link.
@@ -34,14 +37,14 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
    * @param {string} shortId - The unique identifier of the clicked link.
    * @param {number} clickCount - The current click count for the link.
    */
-  const handleLinkClickInternal = (qrCode, shortId, clickCount) => {
+  const handleLinkClickInternal = (qrCode, shortId) => {
     // Increment click count in the global state
     incrementClickCount(shortId);
-
-    // Log the updated click count to the console
-    console.log(
-      `URL https://short.link/${shortId} clicked ${clickCount + 1} times`
-    );
+    // Mark the item as clicked
+    setClickedItems((prev) => ({
+      ...prev,
+      [shortId]: true,
+    }));
 
     // Invoke the parent-provided link click handler, if available
     if (onLinkClick) {
@@ -50,12 +53,17 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
   };
 
   return (
-    <Flex direction="column" gap="1rem" width={"100%"}>
+    <div>
       {items.map((item) => (
-        <Flex key={item.shortId} justify="space-between" align="center">
-          {/* Displays the shortened link with a tooltip for the full URL */}
-          <Box paddingLeft={"30px"}>
-            <Tooltip size="xl" content={item.originalUrl}>
+        <div className="last-child-padding" key={item.shortId}>
+          <Flex justify="space-between" gap="10px">
+            <Tooltip
+              alignItems="center"
+              content={item.originalUrl}
+              contentProps={{
+                style: { fontSize: "1.5rem", padding: "1rem" }, // Equivalent to 2xl size
+              }}
+            >
               <a
                 className="shortlink-text"
                 href={item.originalUrl}
@@ -72,21 +80,28 @@ const LinkList = ({ items, onDelete, onLinkClick }) => {
                 https://short.link/{item.shortId}
               </a>
             </Tooltip>
-          </Box>
-          {/* Provides a delete action for the link */}
-          <Box>
-            <span
+
+            {/* Provides a delete action for the link */}
+            <Box
               role="img"
               aria-label="Delete"
               onClick={() => handleDelete(item.shortId)}
-              style={{ cursor: "pointer", paddingRight: "30px" }}
+              style={{ cursor: "pointer" }}
+              alignContent={"center"}
             >
               🗑️
-            </span>
-          </Box>
-        </Flex>
+            </Box>
+          </Flex>
+
+          {/* Show paragraph about click count only if clicked */}
+          {clickedItems[item.shortId] && (
+            <p className="click-count-text">
+              This link has been clicked {item.clickCount} times!
+            </p>
+          )}
+        </div>
       ))}
-    </Flex>
+    </div>
   );
 };
 

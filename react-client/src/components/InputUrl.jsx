@@ -10,13 +10,22 @@ import { forwardRef } from "react"; // Import React's forwardRef for forwarding 
  * @param {Object} props - The component props.
  * @param {string} props.placeholder - The placeholder text for the input field.
  * @param {string} props.value - The current value of the input field.
+ * @param {string} [props.size="md"] - The size of the input field. Defaults to "md" if not provided.
+ * @param {string} [props.width="300px"] - The width of the input field. Defaults to "300px" if not provided.
  * @param {Function} props.onChange - Callback invoked when the input value changes.
  * @param {Function} props.onKeyDown - Callback invoked when a key is pressed while the input is focused.
  * @param {React.Ref} ref - Forwarded ref for the input element.
  * @returns {JSX.Element} - The rendered input component.
  */
 const InputUrl = forwardRef((props, ref) => {
-  const { placeholder, value, onChange, onKeyDown } = props;
+  const {
+    placeholder,
+    value,
+    size = "md",
+    width = "300px",
+    onChange,
+    onKeyDown,
+  } = props;
 
   /**
    * Handles changes to the input field, ensuring the "https://www." prefix is added if necessary.
@@ -52,7 +61,8 @@ const InputUrl = forwardRef((props, ref) => {
   return (
     <Input
       ref={ref} // Forwarded ref for direct manipulation of the input element
-      size="2xl" // Custom input size
+      size={size} // Pass the size prop dynamically
+      width={width} // Pass the width prop dynamically
       placeholder={placeholder} // Placeholder text for the input
       value={value} // Current input value
       onChange={handleChange} // Custom change handler to enforce prefix rules

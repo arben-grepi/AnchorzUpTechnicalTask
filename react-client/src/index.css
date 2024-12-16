@@ -2,12 +2,12 @@
    Root Variables
    ======================================= */
 
+/*Root variables are not necessary for an app this small*/
 :root {
   --color-primary: #92278f;
   --color-heading: #000000;
   --color-linkText: #179be5;
   --color-primary-success: #008000;
-  --color-primary-error: #ff0000;
 }
 
 /* =======================================
@@ -26,6 +26,8 @@ body {
   color: var(--color-body);
   line-height: 1.5;
   margin-bottom: 1rem;
+  width: 100wv;
+  height: 100vh;
 }
 
 /* Headings */
@@ -46,34 +48,27 @@ h1 {
 h2 {
   font-size: 2rem;
   font-weight: 500; /* Bold */
-}
-
-/* Text groups with consistent margins */
-h2,
-.primary-text,
-.dropdownList-text,
-.shortlink-text {
-  margin-top: 0;
   margin-bottom: 1rem;
 }
 
 /* Shortlink text styles */
 .shortlink-text {
   color: var(--color-linkText);
-  font-size: 1.4rem;
-  padding-bottom: 20px;
+  font-size: 14px;
+}
+.click-count-text {
+  color: #9bb7f4;
+  font-size: 14px;
 }
 
-/*Success and error messages*/
+/*Successmessages*/
 
-.primary-success-text {
+.success-text {
   color: var(--color-primary-success);
-}
-.primary-error-text {
-  color: var(--color-primary-error);
+  padding-left: 5rem;
 }
 
-.primary-button {
+.add-url-button {
   background-color: var(--color-primary);
   color: #fff;
   padding: 1rem 2rem;
@@ -85,61 +80,61 @@ h2,
 /* =======================================
        Layout Styles
        ======================================= */
-
-/* Grid container (responsible for page structure) */
-.grid-container {
-  width: 100%;
-  height: 100%;
-}
-
-/* Flex-based grid styling for alignment */
-.grid {
-  display: flex;
-  justify-content: center;
-  padding-top: 1rem;
+.align-immidiate-children-center > * {
+  margin: 0 auto;
 }
 
 /* MAIN SECTION */
 .main-grid {
-  height: 70vh;
+  padding-top: 2rem;
+  height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
-.MainGrid-Stack {
-  padding-left: 30%;
-}
-.MainGrid-Flex {
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.align-immidiate-children-center > * {
-  margin: 0 auto;
-}
-.menu-item-button {
+.heading-div {
   width: 100%;
+  text-align: center;
+}
+.main-flex {
+  width: 100%;
+  gap: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
-/* Hover effect */
-.menu-item-button:hover {
-  background-color: #e0e0e0;
-  cursor: pointer;
-}
-
-/* Active/click effect */
-.menu-item-button:active {
-  background-color: #d0d0d0;
+.add-url-button {
+  margin-top: 2rem;
+  margin-left: 4rem;
 }
 
 /* PANEL SECTION */
 .panel-grid {
   background-color: #e7e7e7;
-  height: 30vh;
+  height: 40vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.panel-stack {
+  display: flex;
+  flex-direction: column; /* Stack-like layout */
+  align-items: center; /* Center align items */
+  justify-content: center; /* Center justify items */
+  gap: 1rem; /* Add spacing between items */
+  padding-top: 4rem; /* Default padding */
+}
+
+.panel-stack-empty-urls {
+  padding-top: 10rem;
+}
+
+.last-child-padding > :last-child {
+  padding-bottom: 10px;
+}
+
 #AnchorzUpLogo {
-  padding: 10%;
+  width: 60%;
+  padding-bottom: 4rem;
 }
 .shortlink-text:hover {
   color: lightblue; /* Light blue color on hover */
@@ -159,35 +154,47 @@ h2,
     height: 100vh;
   }
 
+  /*MAIN GRID*/
   .main-grid {
     height: 100vh;
-    width: 70vw; /* Occupies 70% of the viewport width */
+    width: 65vw; /* Occupies 70% of the viewport width */
     padding-top: 8rem;
   }
-  .MainGrid-Stack {
-    padding-left: 20%;
-  }
-  .MainGrid-Flex {
-    flex-direction: row;
-  }
-  .align-immidiate-children-center {
-    padding-right: 25%;
+
+  .heading-div {
+    text-align: start;
+    padding-left: 5rem;
   }
 
+  .main-flex {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .add-url-button {
+    margin-left: 5rem;
+  }
+
+  /*PANEL GRID*/
   .panel-grid {
     height: 100vh;
-    width: 30vw; /* Occupies 30% of the viewport width */
+    width: 35vw; /* Occupies 30% of the viewport width */
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 4.5rem;
+  }
+  .panel-stack-empty-urls {
+    padding-top: 13rem; /* Extra padding when URLs are empty and screen width is greater than 700px */
   }
   #AnchorzUpLogo {
-    width: 100%;
-    padding-top: 25%;
-    margin-bottom: 6rem;
+    width: 80%;
   }
+
   h1 {
     padding-bottom: 2rem;
   }
   h2 {
-    padding-bottom: 1.5rem;
+    padding-bottom: "20px";
   }
 }
 
@@ -207,5 +214,20 @@ h2,
   }
   .shortlink-text {
     font-size: 1.8rem;
+  }
+
+  /*MAIN GRID*/
+  .heading-div {
+    padding-left: 10rem;
+  }
+  .success-text {
+    padding-left: 10rem;
+  }
+  .main-flex {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+  .add-url-button {
+    margin-left: 10rem;
   }
 }

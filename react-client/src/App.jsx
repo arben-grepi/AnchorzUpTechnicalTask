@@ -16,12 +16,12 @@ function App() {
       <GlobalProvider>
         <div className="grid-container">
           {/* Panel section for displaying and managing existing URLs */}
-          <div className="grid panel-grid">
+          <div className="panel-grid">
             <Panel />
           </div>
 
           {/* Main section for creating new shortened URLs */}
-          <div className="grid main-grid">
+          <div className="main-grid">
             <Main />
           </div>
         </div>
