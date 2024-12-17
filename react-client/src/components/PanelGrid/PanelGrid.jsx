@@ -3,10 +3,10 @@ import { Stack } from "@chakra-ui/react"; // Import Chakra UI Stack for layout
 import chalk from "chalk"; // Import chalk for colorful console logs
 import { useContext, useEffect, useState } from "react"; // Import React hooks
 
-import { GlobalContext } from "../context/GlobalState"; // Import global state context
+import { GlobalContext } from "../../context/GlobalState"; // Import global state context
 import Logo from "./Logo"; // Import Logo component
-import LinkList from "./LinkList"; // Import LinkList component
-import { isDateExpired, logTable } from "../utils"; // Utility functions for date checks and logging
+import LinkList from "../LinkList/LinkList"; // Import LinkList component
+import { isDateExpired, logTable } from "./utils"; // Utility functions for date checks and logging
 
 /**
  * PanelGrid component

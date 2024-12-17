@@ -1,4 +1,4 @@
-import AnchorzUpLogo from "./images/AnchorzUp.svg";
+import AnchorzUpLogo from "../images/AnchorzUp.svg";
 
 const Logo = () => {
   return <img id="AnchorzUpLogo" src={AnchorzUpLogo} alt="AnchorzUp Logo" />;

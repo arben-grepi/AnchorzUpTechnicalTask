@@ -1,7 +1,7 @@
 import "./index.css"; // Import global styles
 import { GlobalProvider } from "./context/GlobalState"; // Import the global context provider
-import Panel from "./components/PanelGrid"; // Panel component for managing URLs
-import Main from "./components/MainGrid"; // Main component for creating and interacting with URLs
+import Panel from "./components/PanelGrid/PanelGrid"; // Panel component for managing URLs
+import Main from "./components/MainGrid/MainGrid"; // Main component for creating and interacting with URLs
 
 /**
  * Root component of the application.
